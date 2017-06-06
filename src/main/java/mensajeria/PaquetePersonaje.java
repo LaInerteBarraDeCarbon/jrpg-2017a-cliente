@@ -1,5 +1,6 @@
 package mensajeria;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,8 +155,54 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param item
 	 *            Item obtenido. <br>
 	 */
-	public void añadirItem(Inventario item) {
+	public void añadirItem(final Inventario item) {
 		this.inventario.add(item);
+	}
+
+	/**
+	 * Añade un item por ID al inventario. <br>
+	 * 
+	 * @param idItem
+	 *            ID del item. <br>
+	 */
+	public void añadirItem(int idItem) {
+		try {
+			this.inventario.add(new Inventario(idItem, null, 0, 0, 0, 0, 0, null));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Añade un item con sus modificadores al inventario. <br>
+	 * 
+	 * @param idItem
+	 *            ID del item. <br>
+	 * @param nombre
+	 *            Nombre del item. <br>
+	 * @param bonusSalud
+	 *            Modificador discreto de salud. <br>
+	 * @param bonusEnergia
+	 *            Modificador discreto de energía. <br>
+	 * @param bonusFuerza
+	 *            Modificador discreto de fuerza. <br>
+	 * @param bonusDestreza
+	 *            Modificador discreto de destreza. <br>
+	 * @param bonusInteligencia
+	 *            Modificador discreto de inteligencia. <br>
+	 * @param foto
+	 *            Foto del item. <br>
+	 */
+	public final void añadirItem(int idItem, String nombre, int bonusSalud, int bonusEnergia, int bonusAtaque,
+			int bonusDefensa, int bonusMagia, String foto) {
+		try {
+			this.inventario.add(new Inventario(idItem, nombre, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
+					bonusMagia, foto));
+			asignarBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -175,9 +222,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		for (ListIterator<Inventario> iterator = inventario.listIterator(); iterator.hasNext();) {
 			Inventario actual = iterator.next();
 			asignarBonus(actual.getBonusSalud(), actual.getBonusEnergia(), actual.getBonusFuerza(),
-					actual.getBonusDestreza(), actual.getBonusInteligencia(), actual.getModificadorSalud(),
-					actual.getModificadorEnergia(), actual.getModificadorFuerza(), actual.getModificadorDestreza(),
-					actual.getModificadorInteligencia());
+					actual.getBonusDestreza(), actual.getBonusInteligencia());
 		}
 	}
 
@@ -194,30 +239,14 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *            Modificador discreto de destreza. <br>
 	 * @param bonusInteligencia
 	 *            Modificador discreto de inteligencia. <br>
-	 * @param porcSalud
-	 *            Bonus Modificador gradual de salud. <br>
-	 * @param porcEnergia
-	 *            Modificador gradual de energía. <br>
-	 * @param porcFuerza
-	 *            Modificador gradual de fuerza. <br>
-	 * @param porcDestreza
-	 *            Modificador gradual de destreza. <br>
-	 * @param porcInteligencia
-	 *            Modificador gradual de inteligencia. <br>
 	 */
 	public void asignarBonus(final int bonusSalud, final int bonusEnergia, final int bonusFuerza,
-			final int bonusDestreza, final int bonusInteligencia, final double porcSalud, final double porcEnergia,
-			final double porcFuerza, final double porcDestreza, final double porcInteligencia) {
+			final int bonusDestreza, final int bonusInteligencia) {
 		this.saludTope += bonusSalud;
 		this.energiaTope += bonusEnergia;
 		this.fuerza += bonusFuerza;
 		this.destreza += bonusDestreza;
 		this.inteligencia += bonusInteligencia;
-		this.saludTope += this.saludTope * porcSalud;
-		this.energiaTope += this.energiaTope * porcEnergia;
-		this.fuerza += this.fuerza * porcFuerza;
-		this.destreza += this.destreza * porcDestreza;
-		this.inteligencia += this.inteligencia * porcInteligencia;
 	}
 
 	/**

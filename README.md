@@ -1,6 +1,6 @@
 # World Of Middle Earth (WOME) - cliente
 
-[Travis](https://travis-ci.org/LaInerteBarraDeCarbon/jrpg-2017a-cliente.svg?branch=master) 
+[[Build Status](https://travis-ci.org/LaInerteBarraDeCarbon/jrpg-2017a-servidor.svg?branch=master)](https://travis-ci.org/LaInerteBarraDeCarbon/jrpg-2017a-cliente) 
 
 ## Sobre las personas
 

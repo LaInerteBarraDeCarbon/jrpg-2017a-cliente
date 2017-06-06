@@ -78,13 +78,9 @@ public class EscuchaMensajes extends Thread {
 
 				case Comando.ATACAR:
 					paqueteAtacar = (PaqueteAtacar) gson.fromJson(objetoLeido, PaqueteAtacar.class);
-					HashMap<String, Integer> atributos = new HashMap<String, Integer>();
-					juego.getEstadoBatalla().getEnemigo().serRobadoSalud(paqueteAtacar.getNuevaSaludPersonaje());
-					juego.getEstadoBatalla().getEnemigo().quitarEnergia(paqueteAtacar.getNuevaEnergiaPersonaje());
-					juego.getEstadoBatalla().getPersonaje().serRobadoSalud(paqueteAtacar.getNuevaSaludEnemigo());
-					juego.getEstadoBatalla().getPersonaje().quitarEnergia(paqueteAtacar.getNuevaEnergiaEnemigo());
-					juego.getEstadoBatalla().getEnemigo().modificarAtributos(atributos);
-					juego.getEstadoBatalla().getPersonaje().modificarAtributos(atributos);
+					paqueteAtacar.encapsularAtributos();
+					juego.getEstadoBatalla().getEnemigo().modificarAtributos(paqueteAtacar.getAtributos());
+					juego.getEstadoBatalla().getPersonaje().modificarAtributos(paqueteAtacar.getAtributos());
 					juego.getEstadoBatalla().setMiTurno(true);
 					break;
 
@@ -104,11 +100,12 @@ public class EscuchaMensajes extends Thread {
 					if (juego.getPersonaje().getId() == paquetePersonaje.getId()) {
 						juego.actualizarPersonaje();
 						juego.getEstadoJuego().actualizarPersonaje();
+						cliente.actualizarItems(paquetePersonaje);
 					}
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
 			e.printStackTrace();
 		}
 	}

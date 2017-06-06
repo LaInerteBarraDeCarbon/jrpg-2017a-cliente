@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -50,6 +51,11 @@ public class EstadoBatalla extends Estado {
 	private BufferedImage miniaturaEnemigo;
 
 	private MenuBatalla menuBatalla;
+
+	/**
+	 * Cantidad de items total que haya disponible. <br>
+	 */
+	private static final int CANTIDADTOTALITEMS = 50;
 
 	public EstadoBatalla(Juego juego, PaqueteBatalla paqueteBatalla) {
 		super(juego);
@@ -150,6 +156,7 @@ public class EstadoBatalla extends Estado {
 							juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(),
 									MenuInfoPersonaje.menuSubirNivel);
 						}
+						otorgarItem();
 						finalizarBatalla();
 						Estado.setEstado(juego.getEstadoJuego());
 					} else {
@@ -161,7 +168,7 @@ public class EstadoBatalla extends Estado {
 					}
 				} else if (haySpellSeleccionada && !seRealizoAccion) {
 					JOptionPane.showMessageDialog(null,
-							"No posees la energ�a suficiente para realizar esta habilidad.");
+							"No posees la energía suficiente para realizar esta habilidad.");
 				}
 
 				juego.getHandlerMouse().setNuevoClick(false);
@@ -281,7 +288,7 @@ public class EstadoBatalla extends Estado {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
 			e.printStackTrace();
 		}
 	}
@@ -308,7 +315,15 @@ public class EstadoBatalla extends Estado {
 		return enemigo;
 	}
 
-	// private void asignarItemInventario() {
-	// paquetePersonaje.obtenerItem(new Random().nextInt(30));
-	// }
+	public void otorgarItem() {
+		paquetePersonaje.añadirItem(new Random().nextInt(CANTIDADTOTALITEMS));
+	}
+
+	/**
+	 * Indica si el personaje se encuentra en batalla. <br>
+	 */
+	@Override
+	public boolean enBatalla() {
+		return true;
+	}
 }
