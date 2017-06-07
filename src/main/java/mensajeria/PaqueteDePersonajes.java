@@ -3,22 +3,46 @@ package mensajeria;
 import java.io.Serializable;
 import java.util.Map;
 
+/**
+ * Clase que administra los distintos personajes. <br>
+ */
+@SuppressWarnings("serial")
 public class PaqueteDePersonajes extends Paquete implements Serializable, Cloneable {
 
+	/**
+	 * Personajes del juego. <br>
+	 */
 	private Map<Integer, PaquetePersonaje> personajes;
 
-	public PaqueteDePersonajes(){
+	/**
+	 * Paquete básico de personajes. <br>
+	 */
+	public PaqueteDePersonajes() {
 
 	}
-	
-	public PaqueteDePersonajes(Map<Integer, PaquetePersonaje> personajes){
+
+	/**
+	 * Crea la lista con los personajes. <br>
+	 * 
+	 * @param personajes
+	 *            Lista de los personajes. <br>
+	 */
+	public PaqueteDePersonajes(Map<Integer, PaquetePersonaje> personajes) {
 		this.personajes = personajes;
 	}
-	
-	public Map<Integer, PaquetePersonaje> getPersonajes(){
+
+	/**
+	 * Devuelve los distintos personajes. <br>
+	 * 
+	 * @return Personajes. <br>
+	 */
+	public Map<Integer, PaquetePersonaje> getPersonajes() {
 		return personajes;
 	}
 
+	/**
+	 * Clona los personajes existentes. <br>
+	 */
 	public Object clone() {
 		Object obj = null;
 		obj = super.clone();

@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class MenuCreacionPj extends JFrame {
 
 	private JPanel contentPane;

@@ -23,6 +23,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class MenuMapas extends JFrame {
 
 	private JPanel contentPane;

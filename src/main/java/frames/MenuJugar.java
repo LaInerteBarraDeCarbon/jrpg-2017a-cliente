@@ -21,6 +21,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class MenuJugar extends JFrame {
 
 	private JPanel contentPane;

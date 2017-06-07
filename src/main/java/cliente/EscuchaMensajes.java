@@ -21,14 +21,29 @@ import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase que administra los distintos llamados del juego y sus jugadores. <br>
+ */
 public class EscuchaMensajes extends Thread {
 
+	/**
+	 * Juego del cliente. <br>
+	 */
 	private Juego juego;
+	/**
+	 * Usuario. <br>
+	 */
 	private Cliente cliente;
 	private ObjectInputStream entrada;
 	private final Gson gson = new Gson();
 
+	/**
+	 * Ubicación de los distintos personajes. <br>
+	 */
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
+	/**
+	 * Lista de los personajes conectados. <br>
+	 */
 	private Map<Integer, PaquetePersonaje> personajesConectados;
 
 	public EscuchaMensajes(Juego juego) {
@@ -38,9 +53,7 @@ public class EscuchaMensajes extends Thread {
 	}
 
 	public void run() {
-
 		try {
-
 			Paquete paquete;
 			PaquetePersonaje paquetePersonaje;
 			PaqueteMovimiento personaje;
@@ -51,11 +64,8 @@ public class EscuchaMensajes extends Thread {
 			ubicacionPersonajes = new HashMap<>();
 
 			while (true) {
-
 				String objetoLeido = (String) entrada.readObject();
-
 				paquete = gson.fromJson(objetoLeido, Paquete.class);
-
 				switch (paquete.getComando()) {
 
 				case Comando.CONEXION:
@@ -110,10 +120,20 @@ public class EscuchaMensajes extends Thread {
 		}
 	}
 
+	/**
+	 * Devuelve la posición de los personajes conectados. <br>
+	 * 
+	 * @return Posiciones. <br>
+	 */
 	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
 		return ubicacionPersonajes;
 	}
 
+	/**
+	 * Devuelve la lista de personajes conectados. <br>
+	 * 
+	 * @return Personajes conectados. <br>
+	 */
 	public Map<Integer, PaquetePersonaje> getPersonajesConectados() {
 		return personajesConectados;
 	}

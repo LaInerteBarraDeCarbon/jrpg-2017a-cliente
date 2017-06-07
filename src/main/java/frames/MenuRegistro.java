@@ -27,6 +27,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class MenuRegistro extends JFrame {
 	
 	private JTextField txtUsuario;
@@ -97,6 +98,7 @@ public class MenuRegistro extends JFrame {
 		layeredPane.add(labelBackground, new Integer(0));
 		labelBackground.setIcon(new ImageIcon(MenuRegistro.class.getResource("/frames/menuBackground.jpg")));
 		btnRegistrarse.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				synchronized(cliente){
 					cliente.getPaqueteUsuario().setUsername(txtUsuario.getText());

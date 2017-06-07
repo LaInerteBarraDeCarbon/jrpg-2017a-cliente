@@ -23,6 +23,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLayeredPane;
 
+@SuppressWarnings("serial")
 public class MenuInicioSesion extends JFrame {
 
 	private JPanel contentPane;
@@ -94,6 +95,7 @@ public class MenuInicioSesion extends JFrame {
 				btnConectar.setFocusable(false);
 				btnConectar.setIcon(new ImageIcon(MenuInicioSesion.class.getResource("/frames/BotonMenu.png")));
 				btnConectar.addActionListener(new ActionListener() {
+					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent e) {
 						synchronized(cliente){
 							cliente.setAccion(Comando.INICIOSESION);

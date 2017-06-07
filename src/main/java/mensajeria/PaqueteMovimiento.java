@@ -2,12 +2,28 @@ package mensajeria;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
+/**
+ * Controla el movimiento del personaje. <br>
+ */
 public class PaqueteMovimiento extends Paquete implements Serializable, Cloneable {
 
+	/**
+	 * ID del personaje. <br>
+	 */
 	private int id;
+	/**
+	 * Posición X en el mapa. <br>
+	 */
 	private float posX;
+	/**
+	 * Posición Y en el mapa. <br>
+	 */
 	private float posY;
 	private int direccion;
+	/**
+	 * Frame del juego. <br>
+	 */
 	private int frame;
 
 	public PaqueteMovimiento() {
@@ -18,7 +34,7 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 		id = idPersonaje;
 		setComando(Comando.MOVIMIENTO);
 	}
-	
+
 	public PaqueteMovimiento(int idPersonaje, float posX, float posY) {
 		this.id = idPersonaje;
 		this.posX = posX;
@@ -72,4 +88,3 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 		return obj;
 	}
 }
-

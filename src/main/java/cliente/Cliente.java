@@ -1,26 +1,36 @@
 package cliente;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
-import frames.*;
+import frames.MenuCarga;
+import frames.MenuCreacionPj;
+import frames.MenuJugar;
+import frames.MenuMapas;
 import juego.Juego;
 import mensajeria.Comando;
 import mensajeria.Paquete;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
 
+/**
+ * Clase que administra al jugador con su personaje. <br>
+ */
 public class Cliente extends Thread {
 
+	/**
+	 * Jugador. <br>
+	 */
 	private Socket cliente;
+	/**
+	 * IP del jugador. <br>
+	 */
 	private String miIp;
 	private ObjectInputStream entrada;
 	private ObjectOutputStream salida;
@@ -29,46 +39,82 @@ public class Cliente extends Thread {
 	private final Gson gson = new Gson();
 
 	// Paquete usuario y paquete personaje
+	/**
+	 * Usuario. <br>
+	 */
 	private PaqueteUsuario paqueteUsuario;
+	/**
+	 * Personaje. <br>
+	 */
 	private PaquetePersonaje paquetePersonaje;
 
 	// Acciones que realiza el usuario
+	/**
+	 * Acción que realiza el jugador.<br>
+	 */
 	private int accion;
 
 	// Ip y puerto
+	/**
+	 * Dirección IP. <br>
+	 */
 	private String ip;
+	/**
+	 * Puerto a utilizar. <br>
+	 */
 	private final int puerto = 9999;
 
+	/**
+	 * Devuelve la acción. <br>
+	 * 
+	 * @return Ación. <br>
+	 */
 	public int getAccion() {
 		return accion;
 	}
 
+	/**
+	 * Establece la acción. <br>
+	 * 
+	 * @param accion
+	 *            Acción.<br>
+	 */
 	public void setAccion(int accion) {
 		this.accion = accion;
 	}
 
+	/**
+	 * Juego del cliente. <br>
+	 */
 	private Juego wome;
+	/**
+	 * Menú del cliente. <br>
+	 */
 	private MenuCarga menuCarga;
 
+	/**
+	 * Genera un cliente. <br>
+	 */
 	public Cliente() {
-
 		ip = JOptionPane.showInputDialog("Ingrese IP del servidor (localhost default): ");
 		if (ip == null) {
 			ip = "localhost";
 		}
-
 		try {
 			cliente = new Socket(ip, puerto);
 			miIp = cliente.getInetAddress().getHostAddress();
 			entrada = new ObjectInputStream(cliente.getInputStream());
 			salida = new ObjectOutputStream(cliente.getOutputStream());
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo al iniciar la aplicaci�n. Revise la conexi�n con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo al iniciar la aplicación. Revise la conexión con el servidor.");
 			System.exit(1);
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Función madre de Cliente. <br>
+	 */
 	public void run() {
 		synchronized (this) {
 			try {
@@ -216,18 +262,40 @@ public class Cliente extends Thread {
 
 	}
 
+	/**
+	 * Devuelve el socket del cliente. <br>
+	 * 
+	 * @return Socket. <br>
+	 */
 	public Socket getSocket() {
 		return cliente;
 	}
 
+	/**
+	 * Establece el socket del cliente. <br>
+	 * 
+	 * @param cliente
+	 *            Socket del cliente. <br>
+	 */
 	public void setSocket(Socket cliente) {
 		this.cliente = cliente;
 	}
 
+	/**
+	 * Devuelve la IP del jugador. <br>
+	 * 
+	 * @return IP del jugador. <br>
+	 */
 	public String getMiIp() {
 		return miIp;
 	}
 
+	/**
+	 * Establece la IP del jugador. <br>
+	 * 
+	 * @param miIp
+	 *            IP del jugador. <br>
+	 */
 	public void setMiIp(String miIp) {
 		this.miIp = miIp;
 	}
@@ -248,26 +316,51 @@ public class Cliente extends Thread {
 		this.salida = salida;
 	}
 
+	/**
+	 * Devuelve la condición actual del usuario. <br>
+	 * 
+	 * @return Usuario. <br>
+	 */
 	public PaqueteUsuario getPaqueteUsuario() {
 		return paqueteUsuario;
 	}
 
+	/**
+	 * Devuelve la condición actual del personaje del jugador. <br>
+	 * 
+	 * @return Personaje. <br>
+	 */
 	public PaquetePersonaje getPaquetePersonaje() {
 		return paquetePersonaje;
 	}
 
+	/**
+	 * Devuelve el juego del usuario. <br>
+	 * 
+	 * @return Juego. <br>
+	 */
 	public Juego getJuego() {
 		return wome;
 	}
 
+	/**
+	 * Devuelve el menú de carga del usuario. <br>
+	 * 
+	 * @return Menú de Carga. <br>
+	 */
 	public MenuCarga getMenuCarga() {
 		return menuCarga;
 	}
 
+	/**
+	 * Actualiza los items del jugador. <br>
+	 * 
+	 * @param paqueteActualizado
+	 *            Valores actualizados del jugador. <br>
+	 */
 	public void actualizarItems(PaquetePersonaje paqueteActualizado) {
 		if (paquetePersonaje.getCantidadObjetosInventario() != paqueteActualizado.getCantidadObjetosInventario()) {
 			paquetePersonaje.añadirItem(paqueteActualizado.getItems().get(paqueteActualizado.getItems().size() - 1));
 		}
-
 	}
 }

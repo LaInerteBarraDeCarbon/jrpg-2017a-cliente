@@ -2,6 +2,7 @@ package mensajeria;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class PaqueteFinalizarBatalla extends Paquete implements Serializable, Cloneable {
 
 	private int id;

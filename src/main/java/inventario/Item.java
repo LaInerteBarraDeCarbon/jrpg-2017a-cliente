@@ -14,12 +14,32 @@ import dominio.Inventario;
 import mensajeria.PaquetePersonaje;
 
 @SuppressWarnings("serial")
+/**
+ * Clase que muestra los items en el inventario. <br>
+ */
 public class Item extends JPanel {
 
+	/**
+	 * Cantidad de columnas del inventario. <br>
+	 */
 	private static final int CANTCOLUMNAS = 3;
+	/**
+	 * Cantidad de filas del inventario. <br>
+	 */
 	private static final int CANTFILAS = 3;
+	/**
+	 * Lista de los items en el inventario. <br>
+	 */
 	private ArrayList<Inventario> items;
 
+	/**
+	 * Muestra los items en el inventario. <br>
+	 * 
+	 * @param paquetePersonaje
+	 *            Personaje. <br>
+	 * @throws IOException
+	 *             Error al abrir archivo. <br>
+	 */
 	public Item(PaquetePersonaje paquetePersonaje) throws IOException {
 		setLayout(new GridBagLayout());
 		items = new ArrayList<Inventario>(paquetePersonaje.getItems());
@@ -38,15 +58,15 @@ public class Item extends JPanel {
 				Border border = null;
 				if (row < CANTFILAS - 1) {
 					if (col < CANTCOLUMNAS - 1) {
-						border = new MatteBorder(1, 1, 0, 0, Color.DARK_GRAY);
+						border = new MatteBorder(1, 1, 0, 0, Color.GRAY);
 					} else {
-						border = new MatteBorder(1, 1, 0, 1, Color.DARK_GRAY);
+						border = new MatteBorder(1, 1, 0, 1, Color.GRAY);
 					}
 				} else {
 					if (col < CANTCOLUMNAS - 1) {
-						border = new MatteBorder(1, 1, 1, 0, Color.DARK_GRAY);
+						border = new MatteBorder(1, 1, 1, 0, Color.GRAY);
 					} else {
-						border = new MatteBorder(1, 1, 1, 1, Color.DARK_GRAY);
+						border = new MatteBorder(1, 1, 1, 1, Color.GRAY);
 					}
 				}
 				cellPane.setBorder(border);

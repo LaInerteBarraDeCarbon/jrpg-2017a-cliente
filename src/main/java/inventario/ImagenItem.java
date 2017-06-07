@@ -12,11 +12,24 @@ import dominio.Inventario;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
 
+@SuppressWarnings("serial")
 public class ImagenItem extends JPanel {
 
+	/**
+	 * Imagen del item. <br>
+	 */
 	private BufferedImage imagen;
+	/**
+	 * Personaje. <br>
+	 */
 	private PaquetePersonaje paquetePersonaje;
+	/**
+	 * Label. <br>
+	 */
 	private JLabel label;
+	/**
+	 * Inventario del personaje. <br>
+	 */
 	private Inventario inventario;
 
 	public ImagenItem() {
@@ -63,6 +76,5 @@ public class ImagenItem extends JPanel {
 		add(label);
 		this.validate();
 		this.repaint();
-
 	}
 }

@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+@SuppressWarnings("serial")
 public class MenuCarga extends JFrame {
 	
 	private JPanel contentPane;

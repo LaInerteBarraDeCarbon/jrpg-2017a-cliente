@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import cliente.Cliente;
 
+@SuppressWarnings("serial")
 public class MenuInicio extends JFrame {
 
 	private JPanel contentPane;

@@ -2,6 +2,7 @@ package mensajeria;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 
 	private int idPj;
