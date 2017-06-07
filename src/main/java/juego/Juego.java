@@ -177,7 +177,7 @@ public class Juego implements Runnable {
 
 		// Fin de graficado de imagenes
 
-		bs.show(); // Hace visible el pr�ximo buffer disponible
+		bs.show(); // Hace visible el próximo buffer disponible
 		g.dispose();
 	}
 

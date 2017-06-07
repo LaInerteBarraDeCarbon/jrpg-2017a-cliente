@@ -2,8 +2,6 @@ package testsCliente;
 
 import java.io.IOException;
 
-import javax.swing.JTextArea;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +24,8 @@ public class TestCliente {
 
 		Cliente cliente = new Cliente();
 
-		// Pasado este punto la conexi�n entre el cliente y el servidor resulto exitosa
+		// Pasado este punto la conexión entre el cliente y el servidor resulto
+		// exitosa
 		Assert.assertEquals(1, 1);
 
 		try {
@@ -149,6 +148,7 @@ public class TestCliente {
 			cliente.getSalida().writeObject(gson.toJson(pu));
 
 			// Recibo la respuesta del servidor
+			@SuppressWarnings("unused")
 			Paquete paquete = (Paquete) gson.fromJson((String) cliente.getEntrada().readObject(), Paquete.class);
 
 			// Envio el paquete de registro de personaje
