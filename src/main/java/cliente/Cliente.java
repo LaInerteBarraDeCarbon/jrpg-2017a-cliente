@@ -96,7 +96,7 @@ public class Cliente extends Thread {
 	 * Genera un cliente. <br>
 	 */
 	public Cliente() {
-		ip = JOptionPane.showInputDialog("Ingrese IP del servidor (localhost default): ");
+		this.cargarIP();
 		if (ip == null) {
 			ip = "localhost";
 		}
@@ -113,6 +113,19 @@ public class Cliente extends Thread {
 	}
 
 	/**
+	 * Carga la IP del usuario. <br>
+	 */
+	public void cargarIP() {
+		int reply = JOptionPane.showConfirmDialog(null, "¿Ingresar por localhost?", "WoME - Servidor",
+				JOptionPane.YES_NO_OPTION);
+		if (reply == JOptionPane.YES_OPTION) {
+			return;
+		} else {
+			this.ip = JOptionPane.showInputDialog("Ingrese IP del servidor (localhost por defecro): ");
+		}
+	}
+
+	/**
 	 * Función madre de Cliente. <br>
 	 */
 	public void run() {
@@ -124,7 +137,7 @@ public class Cliente extends Thread {
 
 				while (!paqueteUsuario.isInicioSesion()) {
 
-					// Muestro el men� principal
+					// Muestro el menú principal
 					new MenuJugar(this).setVisible(true);
 
 					// Creo los paquetes que le voy a enviar al servidor
@@ -184,7 +197,7 @@ public class Cliente extends Thread {
 							if (paquete.getMensaje().equals(Paquete.msjFracaso))
 								JOptionPane.showMessageDialog(null, "No se pudo registrar.");
 
-							// El usuario no pudo iniciar sesi�n
+							// El usuario no pudo iniciar sesión
 							paqueteUsuario.setInicioSesion(false);
 						}
 						break;
@@ -201,15 +214,15 @@ public class Cliente extends Thread {
 						} else {
 							if (paquete.getMensaje().equals(Paquete.msjFracaso))
 								JOptionPane.showMessageDialog(null,
-										"Error al iniciar sesi�n. Revise el usuario y la contrase�a");
+										"Error al iniciar sesión. Revise el usuario y la contraseña");
 
-							// El usuario no pudo iniciar sesi�n
+							// El usuario no pudo iniciar sesión
 							paqueteUsuario.setInicioSesion(false);
 						}
 						break;
 
 					case Comando.SALIR:
-						// El usuario no pudo iniciar sesi�n
+						// El usuario no pudo iniciar sesión
 						paqueteUsuario.setInicioSesion(false);
 						salida.writeObject(gson.toJson(new Paquete(Comando.DESCONECTAR), Paquete.class));
 						cliente.close();
@@ -254,7 +267,7 @@ public class Cliente extends Thread {
 				menuCarga.dispose();
 
 			} catch (IOException | InterruptedException | ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor durante el inicio de sesi�n.");
+				JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor durante el inicio de sesión.");
 				System.exit(1);
 				e.printStackTrace();
 			}

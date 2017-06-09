@@ -181,8 +181,8 @@ public class EstadoBatalla extends Estado {
 		// Si mi mochila no está llena agrego un id
 		// de item válido para llenarlo más adelante en el server
 		if (paquetePersonaje.getCantidadObjetosInventario() < 9) {
-			System.out.println("El personaje " + personaje.getNombre() + " gano un item");
-			int itemGanado = new Random().nextInt(29);
+			int itemGanado = new Random().nextInt(19);
+			System.out.println("El personaje " + personaje.getNombre() + " gano un item: " + (itemGanado + 1));
 			itemGanado += 1;
 			paquetePersonaje.añadirItem(itemGanado);
 		}

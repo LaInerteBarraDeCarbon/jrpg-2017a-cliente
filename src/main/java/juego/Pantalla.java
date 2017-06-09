@@ -27,12 +27,36 @@ import frames.MenuJugar;
 import mensajeria.Comando;
 import mensajeria.Paquete;
 
+/**
+ * Clase que administra la pantalla. <br>
+ */
 public class Pantalla {
-
+	/**
+	 * Pantalla. <br>
+	 */
 	private JFrame pantalla;
+	/**
+	 * Canvas en el que dibuja. <br>
+	 */
 	private Canvas canvas;
+	/**
+	 * Gson Pantalla. <br>
+	 */
 	private final Gson gson = new Gson();
 
+	/**
+	 * Construye la pantalla del juego. <br>
+	 * Se encarga de mostrar desde el mundo hasta el inventario. <br>
+	 * 
+	 * @param NOMBRE
+	 *            Nombre del juego. <br>
+	 * @param ANCHO
+	 *            Ancho de pantalla. <br>
+	 * @param ALTO
+	 *            Alto de pantalla. <br>
+	 * @param cliente
+	 *            Usuario. <br>
+	 */
 	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
 		pantalla = new JFrame(NOMBRE);
 		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
@@ -81,30 +105,50 @@ public class Pantalla {
 		pantalla.pack();
 	}
 
+	/**
+	 * Devuelve el canvas. <br>
+	 * 
+	 * @return Canvas. <br>
+	 */
 	public Canvas getCanvas() {
 		return canvas;
 	}
 
+	/**
+	 * Muestra la pantalla. <br>
+	 * 
+	 * @return Pantalla. <br>
+	 */
 	public JFrame getFrame() {
 		return pantalla;
 	}
 
+	/**
+	 * Hace la pantalla visible. <br>
+	 */
 	public void mostrar() {
 		pantalla.setVisible(true);
 	}
 
+	/**
+	 * Centraliza la pantalla con el movimiento del jugador. <br>
+	 * 
+	 * @param g
+	 *            Grafico. <br>
+	 * @param r
+	 *            Rectangulo. <br>
+	 * @param s
+	 *            String. <br>
+	 */
 	public static void centerString(Graphics g, Rectangle r, String s) {
 		FontRenderContext frc = new FontRenderContext(null, true, true);
-
 		Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
 		int rWidth = (int) Math.round(r2D.getWidth());
 		int rHeight = (int) Math.round(r2D.getHeight());
 		int rX = (int) Math.round(r2D.getX());
 		int rY = (int) Math.round(r2D.getY());
-
 		int a = (r.width / 2) - (rWidth / 2) - rX;
 		int b = (r.height / 2) - (rHeight / 2) - rY;
-
 		g.drawString(s, r.x + a, r.y + b);
 	}
 }
