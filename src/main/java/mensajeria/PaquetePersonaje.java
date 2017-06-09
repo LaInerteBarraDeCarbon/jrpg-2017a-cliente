@@ -1,5 +1,6 @@
 package mensajeria;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -456,6 +457,38 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		this.fuerza += bonusFuerza;
 		this.destreza += bonusDestreza;
 		this.inteligencia += bonusInteligencia;
+	}
+
+	public final void removerBonus() {
+		// Intente usar un iterator y por alguna razón no andaba..
+		for (ListIterator<Inventario> iterator = inventario.listIterator(); iterator.hasNext();) {
+			Inventario actual = iterator.next();
+			quitarBonus(actual.getBonusSalud(), actual.getBonusEnergia(), actual.getBonusFuerza(),
+					actual.getBonusDestreza(), actual.getBonusInteligencia());
+		}
+	}
+
+	/**
+	 * Quita los bonuses del item correspondiente al personaje. <br>
+	 * 
+	 * @param bonusSalud
+	 *            Modificador discreto de salud. <br>
+	 * @param bonusEnergia
+	 *            Modificador discreto de energía. <br>
+	 * @param bonusFuerza
+	 *            Modificador discreto de fuerza. <br>
+	 * @param bonusDestreza
+	 *            Modificador discreto de destreza. <br>
+	 * @param bonusInteligencia
+	 *            Modificador discreto de inteligencia. <br>
+	 */
+	public final void quitarBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
+			final int bonusDefensa, final int bonusInteligencia) {
+		this.saludTope -= bonusSalud;
+		this.energiaTope -= bonusEnergia;
+		this.fuerza -= bonusAtaque;
+		this.destreza -= bonusDefensa;
+		this.inteligencia -= bonusInteligencia;
 	}
 
 	/**

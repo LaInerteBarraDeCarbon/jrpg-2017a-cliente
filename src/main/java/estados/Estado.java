@@ -51,11 +51,6 @@ public abstract class Estado {
 	public abstract void graficar(Graphics g);
 
 	/**
-	 * Indica si el personaje se encuentra en batalla. <br>
-	 */
-	public abstract boolean enBatalla();
-
-	/**
 	 * Establece el estado del jugador. <br>
 	 * 
 	 * @param estado
@@ -73,4 +68,11 @@ public abstract class Estado {
 	public static Estado getEstado() {
 		return estadoActual;
 	}
+
+	/**
+	 * Indica si es estado de juegos. <br>
+	 * 
+	 * @return true si es estado de juego, false de lo contrario. <br>
+	 */
+	public abstract boolean esEstadoDeJuego();
 }

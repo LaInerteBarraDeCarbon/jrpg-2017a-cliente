@@ -63,7 +63,7 @@ public class Pantalla {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_I) {
-					if (!Estado.getEstado().enBatalla()) {
+					if (Estado.getEstado().esEstadoDeJuego()) {
 						MenuInventario menu = new MenuInventario(cliente);
 						menu.setVisible(true);
 					}

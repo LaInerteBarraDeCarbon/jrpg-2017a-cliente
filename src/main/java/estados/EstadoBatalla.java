@@ -52,11 +52,6 @@ public class EstadoBatalla extends Estado {
 
 	private MenuBatalla menuBatalla;
 
-	/**
-	 * Cantidad de items total que haya disponible. <br>
-	 */
-	private static final int CANTIDADTOTALITEMS = 50;
-
 	public EstadoBatalla(Juego juego, PaqueteBatalla paqueteBatalla) {
 		super(juego);
 		mundo = new Mundo(juego, "recursos/mundoBatalla.txt", "recursos/mundoBatallaCapaDos.txt");
@@ -142,7 +137,7 @@ public class EstadoBatalla extends Estado {
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 6) {
 						seRealizoAccion = true;
-						personaje.serEnergizado(5);
+						personaje.serEnergizado(10);
 						haySpellSeleccionada = true;
 					}
 				}
@@ -156,12 +151,17 @@ public class EstadoBatalla extends Estado {
 							juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(),
 									MenuInfoPersonaje.menuSubirNivel);
 						}
-						otorgarItem();
+						ganarItem();
+
 						finalizarBatalla();
 						Estado.setEstado(juego.getEstadoJuego());
+
 					} else {
 						paqueteAtacar = new PaqueteAtacar(paquetePersonaje.getId(), paqueteEnemigo.getId(),
-								personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia());
+								personaje.getSalud(), personaje.getEnergia(), enemigo.getSalud(), enemigo.getEnergia(),
+								personaje.getDefensa(), enemigo.getDefensa(),
+								personaje.getCasta().getProbabilidadEvitarDaño(),
+								enemigo.getCasta().getProbabilidadEvitarDaño());
 						enviarAtaque(paqueteAtacar);
 						miTurno = false;
 						menuBatalla.setHabilitado(false);
@@ -175,6 +175,17 @@ public class EstadoBatalla extends Estado {
 			}
 		}
 
+	}
+
+	private void ganarItem() {
+		// Si mi mochila no está llena agrego un id
+		// de item válido para llenarlo más adelante en el server
+		if (paquetePersonaje.getCantidadObjetosInventario() < 9) {
+			System.out.println("El personaje " + personaje.getNombre() + " gano un item");
+			int itemGanado = new Random().nextInt(29);
+			itemGanado += 1;
+			paquetePersonaje.añadirItem(itemGanado);
+		}
 	}
 
 	@Override
@@ -273,6 +284,7 @@ public class EstadoBatalla extends Estado {
 			paquetePersonaje.setDestreza(personaje.getDestreza());
 			paquetePersonaje.setFuerza(personaje.getFuerza());
 			paquetePersonaje.setInteligencia(personaje.getInteligencia());
+			paquetePersonaje.removerBonus();
 
 			paqueteEnemigo.setSaludTope(enemigo.getSaludTope());
 			paqueteEnemigo.setEnergiaTope(enemigo.getEnergiaTope());
@@ -281,14 +293,16 @@ public class EstadoBatalla extends Estado {
 			paqueteEnemigo.setDestreza(enemigo.getDestreza());
 			paqueteEnemigo.setFuerza(enemigo.getFuerza());
 			paqueteEnemigo.setInteligencia(enemigo.getInteligencia());
+			paqueteEnemigo.removerBonus();
 
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
 
 			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
+
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor");
 			e.printStackTrace();
 		}
 	}
@@ -315,15 +329,8 @@ public class EstadoBatalla extends Estado {
 		return enemigo;
 	}
 
-	public void otorgarItem() {
-		paquetePersonaje.añadirItem(new Random().nextInt(CANTIDADTOTALITEMS));
-	}
-
-	/**
-	 * Indica si el personaje se encuentra en batalla. <br>
-	 */
 	@Override
-	public boolean enBatalla() {
-		return true;
+	public boolean esEstadoDeJuego() {
+		return false;
 	}
 }

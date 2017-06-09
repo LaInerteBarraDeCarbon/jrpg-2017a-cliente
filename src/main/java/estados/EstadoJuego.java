@@ -57,7 +57,7 @@ public class EstadoJuego extends Estado {
 			juego.getCliente().getSalida()
 					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexi�n con el servidor al ingresar al mundo.");
+			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
 			e.printStackTrace();
 		}
 	}
@@ -78,6 +78,7 @@ public class EstadoJuego extends Estado {
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 5, 5, paquetePersonaje, miniaturaPersonaje);
+
 		if (haySolicitud)
 			menuEnemigo.graficar(g, tipoSolicitud);
 
@@ -86,17 +87,15 @@ public class EstadoJuego extends Estado {
 	public void graficarPersonajes(Graphics g) {
 
 		if (juego.getEscuchaMensajes().getPersonajesConectados() != null) {
-			personajesConectados = new HashMap<Integer, PaquetePersonaje>(
-					juego.getEscuchaMensajes().getPersonajesConectados());
-			ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(
-					juego.getEscuchaMensajes().getUbicacionPersonajes());
+			personajesConectados = new HashMap(juego.getEscuchaMensajes().getPersonajesConectados());
+			ubicacionPersonajes = new HashMap(juego.getEscuchaMensajes().getUbicacionPersonajes());
 			Iterator<Integer> it = personajesConectados.keySet().iterator();
 			int key;
 			PaqueteMovimiento actual;
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
 			while (it.hasNext()) {
-				key = (int) it.next();
+				key = it.next();
 				actual = ubicacionPersonajes.get(key);
 				if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId()
 						&& personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego) {
@@ -155,12 +154,8 @@ public class EstadoJuego extends Estado {
 		return tipoSolicitud;
 	}
 
-	/**
-	 * Indica si el personaje se encuentra en batalla. <br>
-	 */
 	@Override
-	public boolean enBatalla() {
-		return false;
+	public boolean esEstadoDeJuego() {
+		return true;
 	}
-
 }
