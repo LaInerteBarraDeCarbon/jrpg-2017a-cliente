@@ -26,7 +26,7 @@ public class Item extends JPanel {
 	/**
 	 * Cantidad de filas del inventario. <br>
 	 */
-	private static final int CANTFILAS = 3;
+	private static final int CANTFILAS = 4;
 	/**
 	 * Lista de los items en el inventario. <br>
 	 */

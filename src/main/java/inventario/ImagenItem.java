@@ -38,6 +38,10 @@ public class ImagenItem extends JPanel {
 	 * Inventario del personaje. <br>
 	 */
 	private Inventario inventario;
+	/**
+	 * Cero. <br>
+	 */
+	private static final int CERO = 0;
 
 	/**
 	 * Crea el inventario básico. <br>
@@ -74,19 +78,19 @@ public class ImagenItem extends JPanel {
 	private void actionListenersYLabel(Inventario inventario) {
 		StringBuilder s = new StringBuilder();
 		s.append("<html>" + inventario.getNombre() + "<br>");
-		if (inventario.getBonusSalud() != 0) {
+		if (inventario.getBonusSalud() != CERO) {
 			s.append("+" + inventario.getBonusSalud() + " Salud " + "<br>");
 		}
-		if (inventario.getBonusEnergia() != 0) {
+		if (inventario.getBonusEnergia() != CERO) {
 			s.append("+" + inventario.getBonusEnergia() + " Energia " + "<br>");
 		}
-		if (inventario.getBonusFuerza() != 0) {
+		if (inventario.getBonusFuerza() != CERO) {
 			s.append("+" + inventario.getBonusFuerza() + " Fuerza " + "<br>");
 		}
-		if (inventario.getBonusDestreza() != 0) {
+		if (inventario.getBonusDestreza() != CERO) {
 			s.append("+" + inventario.getBonusDestreza() + " Destreza " + "<br>");
 		}
-		if (inventario.getBonusInteligencia() != 0) {
+		if (inventario.getBonusInteligencia() != CERO) {
 			s.append("+" + inventario.getBonusInteligencia() + " Inteligencia");
 		}
 		s.append("</html>");
@@ -133,9 +137,8 @@ public class ImagenItem extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			Object[] options = { "Equipar", "Tirar", "Cancelar" };
 			if (e.getClickCount() == 2) {
-				int answer = JOptionPane.showOptionDialog(getParent(), "¿Qué desea hacer?",
-						"Item: " + inventario.getNombre(), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-						null, options, options[2]);
+				int answer = JOptionPane.showOptionDialog(getParent(), null, "Item: " + inventario.getNombre(),
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[2]);
 				if (answer == 1) {
 					paquetePersonaje.quitarBonus(inventario.getBonusSalud(), inventario.getBonusEnergia(),
 							inventario.getBonusFuerza(), inventario.getBonusDestreza(),

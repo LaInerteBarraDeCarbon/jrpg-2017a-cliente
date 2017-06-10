@@ -155,7 +155,7 @@ public class MenuInfoPersonaje {
 	 */
 	private void graficarMenuSubirNivel(Graphics g) {
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "?Has subido de nivel!");
+		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has subido de nivel!");
 		g.setFont(new Font("Book Antiqua", 0, 18));
 		Pantalla.centerString(g, new Rectangle(x, y + 240, MENU.getWidth(), 0), "¡Felicitaciones!");
 		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0), "Nuevo Nivel");
