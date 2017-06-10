@@ -8,13 +8,10 @@ import juego.Juego;
  * Clase que indica el estado del jugador. <br>
  */
 public abstract class Estado {
-
 	/**
 	 * Estado del jugador. <br>
 	 */
 	private static Estado estadoActual = null;
-
-	// Tipo de estados
 	/**
 	 * Estado fuera de linea. <br>
 	 */
@@ -48,6 +45,12 @@ public abstract class Estado {
 	 */
 	public abstract void actualizar();
 
+	/**
+	 * Grafica. <br>
+	 * 
+	 * @param g
+	 *            Graficador. <br>
+	 */
 	public abstract void graficar(Graphics g);
 
 	/**

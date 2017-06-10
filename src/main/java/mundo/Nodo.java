@@ -1,42 +1,100 @@
 package mundo;
 
+/**
+ * Clase que administra los nodos. <br>
+ */
 public class Nodo {
-	
+	/**
+	 * Posición X. <br>
+	 */
 	private int x;
+	/**
+	 * Posición Y. <br>
+	 */
 	private int y;
+	/**
+	 * Índice. <br>
+	 */
 	private int indice;
+	/**
+	 * Cantidad de adyacentes. <br>
+	 */
 	private int cantidadDeAdyacentes;
-	private Nodo [] nodosAdyacentes;
-	
-	public Nodo(int indice, int x, int y){
+	/**
+	 * Nodos adyacenetes. <br>
+	 */
+	private Nodo[] nodosAdyacentes;
+
+	/**
+	 * Crea un nodo con su posición. <br>
+	 * 
+	 * @param indice
+	 *            Índice. <br>
+	 * @param x
+	 *            Posición X. <br>
+	 * @param y
+	 *            Posición Y. <br>
+	 */
+	public Nodo(int indice, int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.indice = indice;
 		cantidadDeAdyacentes = 0;
 		nodosAdyacentes = new Nodo[8];
 	}
-	
-	public int obtenerX(){
+
+	/**
+	 * Devuelve la posición X. <br>
+	 * 
+	 * @return Posición X. <br>
+	 */
+	public int obtenerX() {
 		return x;
 	}
-	
-	public int obtenerY(){
+
+	/**
+	 * Devuelve la posición Y. <br>
+	 * 
+	 * @return Posición Y. <br>
+	 */
+	public int obtenerY() {
 		return y;
 	}
-	
-	public int obtenerIndice(){
+
+	/**
+	 * Devuelve el índice. <br>
+	 * 
+	 * @return Índice. <br>
+	 */
+	public int obtenerIndice() {
 		return indice;
 	}
-	
-	public Nodo [] obtenerNodosAdyacentes(){
+
+	/**
+	 * Devuelve los nodos adyacentes. <br>
+	 * 
+	 * @return Nodos adyacentes. <br>
+	 */
+	public Nodo[] obtenerNodosAdyacentes() {
 		return nodosAdyacentes;
 	}
-	
-	public void agregarAdyacente(Nodo nodo){
-		nodosAdyacentes[cantidadDeAdyacentes++] = nodo; 
+
+	/**
+	 * Agrega un nodo adyacente. <br>
+	 * 
+	 * @param nodo
+	 *            Nodo. <br>
+	 */
+	public void agregarAdyacente(Nodo nodo) {
+		nodosAdyacentes[cantidadDeAdyacentes++] = nodo;
 	}
-	
-	public int obtenerCantidadDeAdyacentes(){
+
+	/**
+	 * Obtiene la cantidad de nodos adyacentes. <br>
+	 * 
+	 * @return Cantidad de nodos adyacentes. <br>
+	 */
+	public int obtenerCantidadDeAdyacentes() {
 		return cantidadDeAdyacentes;
 	}
 }

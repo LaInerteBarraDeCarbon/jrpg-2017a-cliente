@@ -1,29 +1,52 @@
 package entidades;
 
+/**
+ * Clase que administra la pila de los tiles. <br>
+ */
 public class PilaDeTiles {
-	
+	/**
+	 * Nodo de pilas de tiles. <br>
+	 */
 	NodoDePila ptrPila;
-	
-	public PilaDeTiles(){
+
+	/**
+	 * Crea un nodo de pila de tiles. <br>
+	 */
+	public PilaDeTiles() {
 		ptrPila = null;
 	}
-	
-	public void push(NodoDePila nodo){
+
+	/**
+	 * Establece el siguiente nodo de la pila. <br>
+	 * 
+	 * @param nodo
+	 *            Nodo de pila. <br>
+	 */
+	public void push(NodoDePila nodo) {
 		nodo.establecerSiguiente(ptrPila);
 		ptrPila = nodo;
 	}
-	
-	public NodoDePila pop(){
+
+	/**
+	 * Quita un nodo de la pila. <br>
+	 * 
+	 * @return Primer nodo. <br>
+	 */
+	public NodoDePila pop() {
 		NodoDePila tope = ptrPila;
-		if(tope == null){
+		if (tope == null) {
 			return null;
 		}
 		ptrPila = ptrPila.obtenerSiguiente();
 		return tope;
 	}
-	
-	public boolean estaVacia(){
+
+	/**
+	 * Indica si la pila se encuentra vacía. <br>
+	 * 
+	 * @return true si esta vacía, false de lo contrario. <br>
+	 */
+	public boolean estaVacia() {
 		return ptrPila == null;
 	}
-
 }

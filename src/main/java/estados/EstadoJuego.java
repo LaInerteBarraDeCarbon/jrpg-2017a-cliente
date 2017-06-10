@@ -27,20 +27,52 @@ import recursos.Recursos;
 
 public class EstadoJuego extends Estado {
 
+	/**
+	 * Personaje visual. <br>
+	 */
 	private Entidad entidadPersonaje;
+	/**
+	 * Personaje. <br>
+	 */
 	private PaquetePersonaje paquetePersonaje;
+	/**
+	 * Mundo actual. <br>
+	 */
 	private Mundo mundo;
+	/**
+	 * Ubicaciones de los personajes en el mundo. <br>
+	 */
 	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
+	/**
+	 * Personajes conectados. <br>
+	 */
 	private Map<Integer, PaquetePersonaje> personajesConectados;
+	/**
+	 * Indicador de si hay solicitud. <br>
+	 */
 	private boolean haySolicitud;
+	/**
+	 * Tipo de solicitud. <br>
+	 */
 	private int tipoSolicitud;
-
+	/**
+	 * Gson. <br>
+	 */
 	private final Gson gson = new Gson();
-
+	/**
+	 * Imagen del personaje. <br>
+	 */
 	private BufferedImage miniaturaPersonaje;
-
+	/**
+	 * Menú del enemigo. <br>
+	 */
 	MenuInfoPersonaje menuEnemigo;
 
+	/**
+	 * 
+	 * @param juego
+	 *            Juego. <br>
+	 */
 	public EstadoJuego(Juego juego) {
 		super(juego);
 		mundo = new Mundo(juego, "recursos/" + getMundo() + ".txt", "recursos/" + getMundo() + ".txt");
@@ -48,9 +80,7 @@ public class EstadoJuego extends Estado {
 		entidadPersonaje = new Entidad(juego, mundo, 64, 64, juego.getPersonaje().getNombre(), 0, 0,
 				Recursos.personaje.get(juego.getPersonaje().getRaza()), 150);
 		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(5)[0];
-
 		try {
-			// Le envio al servidor que me conecte al mapa y mi posicion
 			juego.getPersonaje().setComando(Comando.CONEXION);
 			juego.getPersonaje().setEstado(Estado.estadoJuego);
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
@@ -62,12 +92,18 @@ public class EstadoJuego extends Estado {
 		}
 	}
 
+	/**
+	 * Actualiza el mundo y los personajes. <br>
+	 */
 	@Override
 	public void actualizar() {
 		mundo.actualizar();
 		entidadPersonaje.actualizar();
 	}
 
+	/**
+	 * Grafica el juego. <br>
+	 */
 	@Override
 	public void graficar(Graphics g) {
 		g.drawImage(Recursos.background, 0, 0, juego.getAncho(), juego.getAlto(), null);
@@ -78,17 +114,23 @@ public class EstadoJuego extends Estado {
 		entidadPersonaje.graficarNombre(g);
 		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 5, 5, paquetePersonaje, miniaturaPersonaje);
-
-		if (haySolicitud)
+		if (haySolicitud) {
 			menuEnemigo.graficar(g, tipoSolicitud);
-
+		}
 	}
 
+	/**
+	 * Grafica al personaje. <br>
+	 * 
+	 * @param g
+	 *            Graficador. <br>
+	 */
 	public void graficarPersonajes(Graphics g) {
-
 		if (juego.getEscuchaMensajes().getPersonajesConectados() != null) {
-			personajesConectados = new HashMap(juego.getEscuchaMensajes().getPersonajesConectados());
-			ubicacionPersonajes = new HashMap(juego.getEscuchaMensajes().getUbicacionPersonajes());
+			personajesConectados = new HashMap<Integer, PaquetePersonaje>(
+					juego.getEscuchaMensajes().getPersonajesConectados());
+			ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(
+					juego.getEscuchaMensajes().getUbicacionPersonajes());
 			Iterator<Integer> it = personajesConectados.keySet().iterator();
 			int key;
 			PaqueteMovimiento actual;
@@ -113,24 +155,46 @@ public class EstadoJuego extends Estado {
 		}
 	}
 
+	/**
+	 * Devuelve al personaje. <br>
+	 * 
+	 * @return Personaje. <br>
+	 */
 	public Entidad getPersonaje() {
 		return entidadPersonaje;
 	}
 
+	/**
+	 * Devuelve el nombre del mundo. <br>
+	 * 
+	 * @return Nombre mundo. <br>
+	 */
 	private String getMundo() {
 		int mundo = juego.getPersonaje().getMapa();
-
 		if (mundo == 1) {
 			return "Aubenor";
-		} else if (mundo == 2) {
-			return "Aris";
-		} else if (mundo == 3) {
-			return "Eodrim";
+		} else {
+			if (mundo == 2) {
+				return "Aris";
+			} else {
+				if (mundo == 3) {
+					return "Eodrim";
+				}
+			}
 		}
-
 		return null;
 	}
 
+	/**
+	 * Establece el tipo de solicitud. <br>
+	 * 
+	 * @param b
+	 *            Indicador de solicitud. <br>
+	 * @param enemigo
+	 *            Enemigo. <br>
+	 * @param tipoSolicitud
+	 *            Tipo de solicitud. <br>
+	 */
 	public void setHaySolicitud(boolean b, PaquetePersonaje enemigo, int tipoSolicitud) {
 		haySolicitud = b;
 		// menu que mostrara al enemigo
@@ -138,22 +202,43 @@ public class EstadoJuego extends Estado {
 		this.tipoSolicitud = tipoSolicitud;
 	}
 
+	/**
+	 * Devuelve si hay una solicitud. <br>
+	 * 
+	 * @return true si la hay, false de lo contrario. <br>
+	 */
 	public boolean getHaySolicitud() {
 		return haySolicitud;
 	}
 
+	/**
+	 * Actualiza al personaje. <br>
+	 */
 	public void actualizarPersonaje() {
 		paquetePersonaje = juego.getPersonaje();
 	}
 
+	/**
+	 * Devuelve el menú del enemigo. <br>
+	 * 
+	 * @return Menú enemigo. <br>
+	 */
 	public MenuInfoPersonaje getMenuEnemigo() {
 		return menuEnemigo;
 	}
 
+	/**
+	 * Devuelve el tipo de solicitud. <br>
+	 * 
+	 * @return Tipo de solicitud. <br>
+	 */
 	public int getTipoSolicitud() {
 		return tipoSolicitud;
 	}
 
+	/**
+	 * Indica el estado de juego. <br>
+	 */
 	@Override
 	public boolean esEstadoDeJuego() {
 		return true;
