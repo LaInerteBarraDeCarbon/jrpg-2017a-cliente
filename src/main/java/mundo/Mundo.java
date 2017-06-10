@@ -82,7 +82,7 @@ public class Mundo {
 	 * @param pathObstac
 	 *            Obstaculos. <br>
 	 */
-	public Mundo(Juego juego, String pathMap, String pathObstac) {
+	public Mundo(final Juego juego, final String pathMap, final String pathObstac) {
 		this.juego = juego;
 		cargarMundo(pathMap, pathObstac);
 		mundoAGrafo();
@@ -101,7 +101,7 @@ public class Mundo {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficar(Graphics g) {
+	public void graficar(final Graphics g) {
 		xOffset = juego.getEstadoJuego().getPersonaje().getxOffset();
 		yOffset = juego.getEstadoJuego().getPersonaje().getYOffset();
 
@@ -129,7 +129,7 @@ public class Mundo {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficarObstaculos(Graphics g) {
+	public void graficarObstaculos(final Graphics g) {
 		Tile obst;
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
@@ -161,7 +161,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Tile. <br>
 	 */
-	public Tile getTile(int x, int y) {
+	public Tile getTile(final int x, final int y) {
 		Tile t = Tile.tiles[tiles[x][y]];
 		if (t == null) {
 			return Tile.aubenor[Tile.aubenorBase];
@@ -177,7 +177,7 @@ public class Mundo {
 	 * @param pathObstaculos
 	 *            Obstaculos del mundo. <br>
 	 */
-	private void cargarMundo(String pathMapa, String pathObstaculos) {
+	private void cargarMundo(final String pathMapa, final String pathObstaculos) {
 		String archivo = Utilitarias.archivoAString(pathMapa);
 		String[] tokens = archivo.split("\\s+");
 		ancho = Utilitarias.parseInt(tokens[0]);
@@ -293,7 +293,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Distancia. <br>
 	 */
-	public static float[] isoA2D(float x, float y) {
+	public static float[] isoA2D(final float x, final float y) {
 		float[] dosD = new float[2];
 		dosD[0] = (x / (Tile.ANCHO / 2) + y / (Tile.ALTO / 2)) / 2;
 		dosD[1] = (y / (Tile.ALTO / 2) - (x / (Tile.ANCHO / 2))) / 2;
@@ -309,7 +309,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Distancia. <br>
 	 */
-	public static float[] dosDaIso(float x, float y) {
+	public static float[] dosDaIso(final float x, final float y) {
 		float[] iso = new float[2];
 		iso[0] = (x - y) * (Tile.ANCHO / 2);
 		iso[1] = (x + y) * (Tile.ALTO / 2);
@@ -325,7 +325,7 @@ public class Mundo {
 	 *            Posición Y. <br>
 	 * @return Distancia. <br>
 	 */
-	public static int[] mouseATile(float x, float y) {
+	public static int[] mouseATile(final float x, final float y) {
 		int tile[] = new int[2];
 		tile[0] = (int) Math.floor((y / Tile.ALTO) + (x / Tile.ANCHO)) + 1;
 		tile[1] = (int) Math.floor((-x / Tile.ANCHO) + (y / Tile.ALTO)) + 1;

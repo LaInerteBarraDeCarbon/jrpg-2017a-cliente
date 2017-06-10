@@ -73,7 +73,7 @@ public class EstadoJuego extends Estado {
 	 * @param juego
 	 *            Juego. <br>
 	 */
-	public EstadoJuego(Juego juego) {
+	public EstadoJuego(final Juego juego) {
 		super(juego);
 		mundo = new Mundo(juego, "recursos/" + getMundo() + ".txt", "recursos/" + getMundo() + ".txt");
 		paquetePersonaje = juego.getPersonaje();
@@ -82,7 +82,7 @@ public class EstadoJuego extends Estado {
 		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(5)[0];
 		try {
 			juego.getPersonaje().setComando(Comando.CONEXION);
-			juego.getPersonaje().setEstado(Estado.estadoJuego);
+			juego.getPersonaje().setEstado(Estado.ESTADOJUEGO);
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
 			juego.getCliente().getSalida()
 					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
@@ -105,7 +105,7 @@ public class EstadoJuego extends Estado {
 	 * Grafica el juego. <br>
 	 */
 	@Override
-	public void graficar(Graphics g) {
+	public void graficar(final Graphics g) {
 		g.drawImage(Recursos.background, 0, 0, juego.getAncho(), juego.getAlto(), null);
 		mundo.graficar(g);
 		// entidadPersonaje.graficar(g);
@@ -125,7 +125,7 @@ public class EstadoJuego extends Estado {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficarPersonajes(Graphics g) {
+	public void graficarPersonajes(final Graphics g) {
 		if (juego.getEscuchaMensajes().getPersonajesConectados() != null) {
 			personajesConectados = new HashMap<Integer, PaquetePersonaje>(
 					juego.getEscuchaMensajes().getPersonajesConectados());
@@ -140,7 +140,7 @@ public class EstadoJuego extends Estado {
 				key = it.next();
 				actual = ubicacionPersonajes.get(key);
 				if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId()
-						&& personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego) {
+						&& personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.ESTADOJUEGO) {
 					Pantalla.centerString(g,
 							new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32),
 									(int) (actual.getPosY() - juego.getCamara().getyOffset() - 20), 0, 10),
@@ -195,7 +195,7 @@ public class EstadoJuego extends Estado {
 	 * @param tipoSolicitud
 	 *            Tipo de solicitud. <br>
 	 */
-	public void setHaySolicitud(boolean b, PaquetePersonaje enemigo, int tipoSolicitud) {
+	public void setHaySolicitud(final boolean b, final PaquetePersonaje enemigo, final int tipoSolicitud) {
 		haySolicitud = b;
 		// menu que mostrara al enemigo
 		menuEnemigo = new MenuInfoPersonaje(300, 50, enemigo);

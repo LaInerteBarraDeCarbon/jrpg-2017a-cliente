@@ -70,7 +70,7 @@ public class MenuInfoPersonaje {
 	 * @param personaje
 	 *            Personaje. <br>
 	 */
-	public MenuInfoPersonaje(int x, int y, PaquetePersonaje personaje) {
+	public MenuInfoPersonaje(final int x, final int y, final PaquetePersonaje personaje) {
 		this.x = x;
 		this.y = y;
 		this.personaje = personaje;
@@ -84,7 +84,7 @@ public class MenuInfoPersonaje {
 	 * @param tipoMenu
 	 *            Tipo de menú a graficar. <br>
 	 */
-	public void graficar(Graphics g, int tipoMenu) {
+	public void graficar(final Graphics g, final int tipoMenu) {
 		g.drawImage(MENU, x, y, null);
 		g.drawImage(Recursos.personaje.get(personaje.getRaza()).get(6)[0], x + MENU.getWidth() / 2 - ANCHOPERSONAJE / 2,
 				y + 70, 128, 128, null);
@@ -120,7 +120,7 @@ public class MenuInfoPersonaje {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	private void graficarMenuPerderBatalla(Graphics g) {
+	private void graficarMenuPerderBatalla(final Graphics g) {
 		g.setColor(Color.BLACK);
 		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has sido derrotado!");
 		g.setFont(new Font("Book Antiqua", 0, 14));
@@ -136,7 +136,7 @@ public class MenuInfoPersonaje {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	private void graficarMenuGanarBatalla(Graphics g) {
+	private void graficarMenuGanarBatalla(final Graphics g) {
 		g.setColor(Color.BLACK);
 		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has derrotado");
 		Pantalla.centerString(g, new Rectangle(x, y + 230, MENU.getWidth(), 0), "a tu enemigo!");
@@ -153,7 +153,7 @@ public class MenuInfoPersonaje {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	private void graficarMenuSubirNivel(Graphics g) {
+	private void graficarMenuSubirNivel(final Graphics g) {
 		g.setColor(Color.BLACK);
 		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has subido de nivel!");
 		g.setFont(new Font("Book Antiqua", 0, 18));
@@ -170,7 +170,7 @@ public class MenuInfoPersonaje {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficarMenuInformacion(Graphics g) {
+	public void graficarMenuInformacion(final Graphics g) {
 		g.setColor(Color.BLACK);
 		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), personaje.getRaza());
 		g.drawString("Casta: ", x + 30, y + 260);
@@ -192,7 +192,7 @@ public class MenuInfoPersonaje {
 	 *            Posición Y mouse. <br>
 	 * @return true si preionó el botón, false de lo contrario. <br>
 	 */
-	public boolean clickEnBoton(int mouseX, int mouseY) {
+	public boolean clickEnBoton(final int mouseX, final int mouseY) {
 		if (mouseX >= x + 50 && mouseX <= x + 250 && mouseY >= y + 380 && mouseY <= y + 405) {
 			return true;
 		}
@@ -208,7 +208,7 @@ public class MenuInfoPersonaje {
 	 *            Posición Y mouse. <br>
 	 * @return true si preionó el botón, false de lo contrario. <br>
 	 */
-	public boolean clickEnCerrar(int mouseX, int mouseY) {
+	public boolean clickEnCerrar(final int mouseX, final int mouseY) {
 		if (mouseX >= x + MENU.getWidth() - 24 && mouseX <= x + MENU.getWidth() + 4 && mouseY >= y + 12
 				&& mouseY <= y + 36) {
 			return true;
@@ -225,7 +225,7 @@ public class MenuInfoPersonaje {
 	 *            Posición Y mouse. <br>
 	 * @return true si preionó el botón, false de lo contrario. <br>
 	 */
-	public boolean clickEnMenu(int mouseX, int mouseY) {
+	public boolean clickEnMenu(final int mouseX, final int mouseY) {
 		if (mouseX >= x && mouseX <= x + MENU.getWidth() && mouseY >= y && mouseY <= y + MENU.getHeight()) {
 			return true;
 		}

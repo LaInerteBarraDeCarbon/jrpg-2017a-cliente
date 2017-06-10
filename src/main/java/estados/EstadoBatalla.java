@@ -103,7 +103,7 @@ public class EstadoBatalla extends Estado {
 	 * @param paqueteBatalla
 	 *            Batalla. <br>
 	 */
-	public EstadoBatalla(Juego juego, PaqueteBatalla paqueteBatalla) {
+	public EstadoBatalla(final Juego juego, final PaqueteBatalla paqueteBatalla) {
 		super(juego);
 		mundo = new Mundo(juego, "recursos/mundoBatalla.txt", "recursos/mundoBatallaCapaDos.txt");
 		miTurno = paqueteBatalla.isMiTurno();
@@ -221,7 +221,7 @@ public class EstadoBatalla extends Estado {
 	 * Grafica la batalla. <br>
 	 */
 	@Override
-	public void graficar(Graphics g) {
+	public void graficar(final Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, juego.getAncho(), juego.getAlto());
 		mundo.graficar(g);
@@ -316,7 +316,7 @@ public class EstadoBatalla extends Estado {
 	 * @param paqueteAtacar
 	 *            Atacar. <br>
 	 */
-	public void enviarAtaque(PaqueteAtacar paqueteAtacar) {
+	public void enviarAtaque(final PaqueteAtacar paqueteAtacar) {
 		try {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteAtacar));
 		} catch (IOException e) {
@@ -381,7 +381,7 @@ public class EstadoBatalla extends Estado {
 	 * @param b
 	 *            Indicador de turno. <br>
 	 */
-	public void setMiTurno(boolean b) {
+	public void setMiTurno(final boolean b) {
 		miTurno = b;
 		menuBatalla.setHabilitado(b);
 		juego.getHandlerMouse().setNuevoClick(false);

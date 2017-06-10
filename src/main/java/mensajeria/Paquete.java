@@ -7,16 +7,14 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Paquete implements Serializable, Cloneable {
-
 	/**
 	 * Mensaje para indicar que salió todo bien. <br>
 	 */
-	public static String msjExito = "1";
+	public static String MSJEXITO = "1";
 	/**
 	 * Mensaje para indicar que algo salió mal. <br>
 	 */
-	public static String msjFracaso = "0";
-
+	public static String MSJFRACASO = "0";
 	/**
 	 * Mensaje a devolver. <br>
 	 */
@@ -30,22 +28,51 @@ public class Paquete implements Serializable, Cloneable {
 	 */
 	private int comando;
 
+	/**
+	 * Crea un paquete. <br>
+	 */
 	public Paquete() {
 
 	}
 
-	public Paquete(String mensaje, String nick, String ip, int comando) {
+	/**
+	 * Crea un paquete. <br>
+	 * 
+	 * @param mensaje
+	 *            Mensaje. <br>
+	 * @param nick
+	 *            Nick. <br>
+	 * @param ip
+	 *            IP. <br>
+	 * @param comando
+	 *            Comando. <br>
+	 */
+	public Paquete(final String mensaje, final String nick, final String ip, final int comando) {
 		this.mensaje = mensaje;
 		this.ip = ip;
 		this.comando = comando;
 	}
 
-	public Paquete(String mensaje, int comando) {
+	/**
+	 * Crea un paquete. <br>
+	 * 
+	 * @param mensaje
+	 *            Mensaje. <br>
+	 * @param comando
+	 *            Comando. <br>
+	 */
+	public Paquete(final String mensaje, final int comando) {
 		this.mensaje = mensaje;
 		this.comando = comando;
 	}
 
-	public Paquete(int comando) {
+	/**
+	 * Crea un paquete. <br>
+	 * 
+	 * @param comando
+	 *            Comando. <br>
+	 */
+	public Paquete(final int comando) {
 		this.comando = comando;
 	}
 
@@ -55,7 +82,7 @@ public class Paquete implements Serializable, Cloneable {
 	 * @param mensaje
 	 *            Mensaje. <br>
 	 */
-	public void setMensaje(String mensaje) {
+	public void setMensaje(final String mensaje) {
 		this.mensaje = mensaje;
 	}
 
@@ -65,7 +92,7 @@ public class Paquete implements Serializable, Cloneable {
 	 * @param ip
 	 *            IP. <br>
 	 */
-	public void setIp(String ip) {
+	public void setIp(final String ip) {
 		this.ip = ip;
 	}
 
@@ -75,7 +102,7 @@ public class Paquete implements Serializable, Cloneable {
 	 * @param comando
 	 *            Comando. <br>
 	 */
-	public void setComando(int comando) {
+	public void setComando(final int comando) {
 		this.comando = comando;
 	}
 
@@ -106,6 +133,9 @@ public class Paquete implements Serializable, Cloneable {
 		return comando;
 	}
 
+	/**
+	 * Clona un paquete. <br>
+	 */
 	public Object clone() {
 		Object obj = null;
 		try {
@@ -115,5 +145,4 @@ public class Paquete implements Serializable, Cloneable {
 		}
 		return obj;
 	}
-
 }

@@ -17,7 +17,7 @@ public class Utilitarias {
 	 *            Dirección del archivo. <br>
 	 * @return String del path. <br>
 	 */
-	public static String archivoAString(String path) {
+	public static String archivoAString(final String path) {
 		StringBuilder builder = new StringBuilder();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
@@ -40,7 +40,7 @@ public class Utilitarias {
 	 *            Número (String). <br>
 	 * @return Número (int). <br>
 	 */
-	public static int parseInt(String numero) {
+	public static int parseInt(final String numero) {
 		try {
 			return Integer.parseInt(numero);
 		} catch (NumberFormatException e) {

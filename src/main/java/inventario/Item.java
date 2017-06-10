@@ -40,7 +40,7 @@ public class Item extends JPanel {
 	 * @throws IOException
 	 *             Error al abrir archivo. <br>
 	 */
-	public Item(PaquetePersonaje paquetePersonaje) throws IOException {
+	public Item(final PaquetePersonaje paquetePersonaje) throws IOException {
 		setLayout(new GridBagLayout());
 		items = new ArrayList<Inventario>(paquetePersonaje.getItems());
 		GridBagConstraints gbc = new GridBagConstraints();

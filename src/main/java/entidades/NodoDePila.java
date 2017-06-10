@@ -25,7 +25,7 @@ public class NodoDePila {
 	 * @param y
 	 *            Posición Y. <br>
 	 */
-	public NodoDePila(int x, int y) {
+	public NodoDePila(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		ptrSiguiente = null;
@@ -46,7 +46,7 @@ public class NodoDePila {
 	 * @param nodo
 	 *            Siguiente nodo. <br>
 	 */
-	public void establecerSiguiente(NodoDePila nodo) {
+	public void establecerSiguiente(final NodoDePila nodo) {
 		ptrSiguiente = nodo;
 	}
 

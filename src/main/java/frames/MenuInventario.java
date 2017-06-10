@@ -58,7 +58,7 @@ public class MenuInventario extends JFrame {
 		this.setBounds(600, 600, 600, 600);
 		this.pack();
 		this.setLocationRelativeTo(null);
-
+		//
 		this.setLocation(900, 140);
 		this.setResizable(false);
 		this.setVisible(true);

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import dominio.Inventario;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
+import utilitarias.Constantes;
 
 /**
  * Clase que administra los icónos de los items. <br>
@@ -38,16 +39,13 @@ public class ImagenItem extends JPanel {
 	 * Inventario del personaje. <br>
 	 */
 	private Inventario inventario;
-	/**
-	 * Cero. <br>
-	 */
-	private static final int CERO = 0;
 
 	/**
 	 * Crea el inventario básico. <br>
 	 */
 	public ImagenItem() {
-		label = new JLabel(new ImageIcon(Recursos.noItem.getScaledInstance(49, 49, Image.SCALE_DEFAULT)));
+		label = new JLabel(new ImageIcon(Recursos.noItem.getScaledInstance(Constantes.TAMAÑOLABELITEM,
+				Constantes.TAMAÑOLABELITEM, Image.SCALE_DEFAULT)));
 		add(label);
 	}
 
@@ -61,11 +59,12 @@ public class ImagenItem extends JPanel {
 	 * @throws IOException
 	 *             Error al abrir archivo. <br>
 	 */
-	public ImagenItem(Inventario inventario, PaquetePersonaje paquetePersonaje) throws IOException {
+	public ImagenItem(final Inventario inventario, final PaquetePersonaje paquetePersonaje) throws IOException {
 		this.imagen = inventario.getFoto();
 		this.inventario = inventario;
 		this.paquetePersonaje = paquetePersonaje;
-		this.label = new JLabel(new ImageIcon(this.imagen.getScaledInstance(49, 49, Image.SCALE_DEFAULT)));
+		this.label = new JLabel(new ImageIcon(this.imagen.getScaledInstance(Constantes.TAMAÑOLABELITEM,
+				Constantes.TAMAÑOLABELITEM, Image.SCALE_DEFAULT)));
 		actionListenersYLabel(inventario);
 	}
 
@@ -75,22 +74,22 @@ public class ImagenItem extends JPanel {
 	 * @param inventario
 	 *            Inventario. <br>
 	 */
-	private void actionListenersYLabel(Inventario inventario) {
+	private void actionListenersYLabel(final Inventario inventario) {
 		StringBuilder s = new StringBuilder();
 		s.append("<html>" + inventario.getNombre() + "<br>");
-		if (inventario.getBonusSalud() != CERO) {
+		if (inventario.getBonusSalud() != Constantes.CERO) {
 			s.append("+" + inventario.getBonusSalud() + " Salud " + "<br>");
 		}
-		if (inventario.getBonusEnergia() != CERO) {
+		if (inventario.getBonusEnergia() != Constantes.CERO) {
 			s.append("+" + inventario.getBonusEnergia() + " Energia " + "<br>");
 		}
-		if (inventario.getBonusFuerza() != CERO) {
+		if (inventario.getBonusFuerza() != Constantes.CERO) {
 			s.append("+" + inventario.getBonusFuerza() + " Fuerza " + "<br>");
 		}
-		if (inventario.getBonusDestreza() != CERO) {
+		if (inventario.getBonusDestreza() != Constantes.CERO) {
 			s.append("+" + inventario.getBonusDestreza() + " Destreza " + "<br>");
 		}
-		if (inventario.getBonusInteligencia() != CERO) {
+		if (inventario.getBonusInteligencia() != Constantes.CERO) {
 			s.append("+" + inventario.getBonusInteligencia() + " Inteligencia");
 		}
 		s.append("</html>");
@@ -106,7 +105,8 @@ public class ImagenItem extends JPanel {
 	 * Resetea el label de inventario. <br>
 	 */
 	protected void resetLabel() {
-		label.setIcon(new ImageIcon(Recursos.noItem.getScaledInstance(49, 49, Image.SCALE_DEFAULT)));
+		label.setIcon(new ImageIcon(Recursos.noItem.getScaledInstance(Constantes.TAMAÑOLABELITEM,
+				Constantes.TAMAÑOLABELITEM, Image.SCALE_DEFAULT)));
 		label.setToolTipText(null);
 		paquetePersonaje.removerItem(inventario);
 		label.removeMouseListener(mouseListener);
@@ -118,7 +118,7 @@ public class ImagenItem extends JPanel {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(60, 60);
+		return new Dimension(Constantes.TAMAÑOCUADROITEM, Constantes.TAMAÑOCUADROITEM);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ImagenItem extends JPanel {
 	 * Opción de mouse para decidir qué hacer con el item. <br>
 	 */
 	MouseListener mouseListener = new MouseAdapter() {
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(final MouseEvent e) {
 			Object[] options = { "Equipar", "Tirar", "Cancelar" };
 			if (e.getClickCount() == 2) {
 				int answer = JOptionPane.showOptionDialog(getParent(), null, "Item: " + inventario.getNombre(),

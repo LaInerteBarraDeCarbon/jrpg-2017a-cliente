@@ -90,7 +90,7 @@ public class EscuchaMensajes extends Thread {
 					break;
 				case Comando.BATALLA:
 					paqueteBatalla = gson.fromJson(objetoLeido, PaqueteBatalla.class);
-					juego.getPersonaje().setEstado(Estado.estadoBatalla);
+					juego.getPersonaje().setEstado(Estado.ESTADOBATALLA);
 					Estado.setEstado(null);
 					juego.setEstadoBatalla(new EstadoBatalla(juego, paqueteBatalla));
 					Estado.setEstado(juego.getEstadoBatalla());
@@ -103,7 +103,7 @@ public class EscuchaMensajes extends Thread {
 					break;
 				case Comando.FINALIZARBATALLA:
 					paqueteFinalizarBatalla = gson.fromJson(objetoLeido, PaqueteFinalizarBatalla.class);
-					juego.getPersonaje().setEstado(Estado.estadoJuego);
+					juego.getPersonaje().setEstado(Estado.ESTADOJUEGO);
 					Estado.setEstado(juego.getEstadoJuego());
 					break;
 				case Comando.ACTUALIZARPERSONAJE:

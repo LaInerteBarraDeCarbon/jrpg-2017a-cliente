@@ -14,7 +14,6 @@ import estados.Estado;
  */
 @SuppressWarnings("serial")
 public class PaquetePersonaje extends Paquete implements Serializable, Cloneable {
-
 	/**
 	 * ID del jugador. <br>
 	 */
@@ -80,7 +79,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * 
 	 */
 	public PaquetePersonaje() {
-		estado = Estado.estadoOffline;
+		estado = Estado.ESTADOOFFLINE;
 	}
 
 	/**
@@ -98,7 +97,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param estado
 	 *            Estado actual. <br>
 	 */
-	public void setEstado(int estado) {
+	public void setEstado(final int estado) {
 		this.estado = estado;
 	}
 
@@ -117,7 +116,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param mapa
 	 *            Mapa del jugador. <br>
 	 */
-	public void setMapa(int mapa) {
+	public void setMapa(final int mapa) {
 		idMapa = mapa;
 	}
 
@@ -136,7 +135,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param nivel
 	 *            Nivel del personaje. <br>
 	 */
-	public void setNivel(int nivel) {
+	public void setNivel(final int nivel) {
 		this.nivel = nivel;
 	}
 
@@ -155,7 +154,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param experiencia
 	 *            Experiencia del jugador. <br>
 	 */
-	public void setExperiencia(int experiencia) {
+	public void setExperiencia(final int experiencia) {
 		this.experiencia = experiencia;
 	}
 
@@ -174,7 +173,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param id
 	 *            ID del personaje. <br>
 	 */
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -193,7 +192,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param casta
 	 *            Casta del personaje. <br>
 	 */
-	public void setCasta(String casta) {
+	public void setCasta(final String casta) {
 		this.casta = casta;
 	}
 
@@ -212,7 +211,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param nombre
 	 *            Nombre del personaje. <br>
 	 */
-	public void setNombre(String nombre) {
+	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
 
@@ -231,7 +230,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param raza
 	 *            Raza del personaje. <br>
 	 */
-	public void setRaza(String raza) {
+	public void setRaza(final String raza) {
 		this.raza = raza;
 	}
 
@@ -250,7 +249,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param saludTope
 	 *            Salud máxima del personaje. <br>
 	 */
-	public void setSaludTope(int saludTope) {
+	public void setSaludTope(final int saludTope) {
 		this.saludTope = saludTope;
 	}
 
@@ -269,7 +268,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param energiaTope
 	 *            Energía máxima del personaje. <br>
 	 */
-	public void setEnergiaTope(int energiaTope) {
+	public void setEnergiaTope(final int energiaTope) {
 		this.energiaTope = energiaTope;
 	}
 
@@ -288,7 +287,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param fuerza
 	 *            Fuerza del personaje. <br>
 	 */
-	public void setFuerza(int fuerza) {
+	public void setFuerza(final int fuerza) {
 		this.fuerza = fuerza;
 	}
 
@@ -307,7 +306,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param destreza
 	 *            Destreza del personaje. <br>
 	 */
-	public void setDestreza(int destreza) {
+	public void setDestreza(final int destreza) {
 		this.destreza = destreza;
 	}
 
@@ -326,7 +325,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param inteligencia
 	 *            Inteligencia del personaje. <br>
 	 */
-	public void setInteligencia(int inteligencia) {
+	public void setInteligencia(final int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
 
@@ -354,7 +353,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param salud
 	 *            Salud del personaje. <br>
 	 */
-	public void setSalud(int salud) {
+	public void setSalud(final int salud) {
 		this.salud = salud;
 	}
 
@@ -374,7 +373,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param idItem
 	 *            ID del item. <br>
 	 */
-	public void añadirItem(int idItem) {
+	public void añadirItem(final int idItem) {
 		try {
 			this.inventario.add(new Inventario(idItem, null, 0, 0, 0, 0, 0, null));
 		} catch (IOException e) {
@@ -402,14 +401,13 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param foto
 	 *            Foto del item. <br>
 	 */
-	public final void añadirItem(int idItem, String nombre, int bonusSalud, int bonusEnergia, int bonusAtaque,
-			int bonusDefensa, int bonusMagia, String foto) {
+	public final void añadirItem(final int idItem, final String nombre, final int bonusSalud, final int bonusEnergia,
+			final int bonusAtaque, final int bonusDefensa, final int bonusMagia, final String foto) {
 		try {
 			this.inventario.add(new Inventario(idItem, nombre, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
 					bonusMagia, foto));
 			asignarBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia);
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 	}

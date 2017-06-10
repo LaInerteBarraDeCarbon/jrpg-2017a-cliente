@@ -35,7 +35,7 @@ public class Nodo {
 	 * @param y
 	 *            Posición Y. <br>
 	 */
-	public Nodo(int indice, int x, int y) {
+	public Nodo(final int indice, final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		this.indice = indice;
@@ -85,7 +85,7 @@ public class Nodo {
 	 * @param nodo
 	 *            Nodo. <br>
 	 */
-	public void agregarAdyacente(Nodo nodo) {
+	public void agregarAdyacente(final Nodo nodo) {
 		nodosAdyacentes[cantidadDeAdyacentes++] = nodo;
 	}
 

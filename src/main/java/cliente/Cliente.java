@@ -18,12 +18,12 @@ import mensajeria.Comando;
 import mensajeria.Paquete;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
+import utilitarias.Constantes;
 
 /**
  * Clase que administra al jugador con su personaje. <br>
  */
 public class Cliente extends Thread {
-
 	/**
 	 * Jugador. <br>
 	 */
@@ -63,7 +63,7 @@ public class Cliente extends Thread {
 	/**
 	 * Puerto a utilizar. <br>
 	 */
-	private final int puerto = 9999;
+	private static final int PUERTO = 9999;
 
 	/**
 	 * Devuelve la acción. <br>
@@ -80,7 +80,7 @@ public class Cliente extends Thread {
 	 * @param accion
 	 *            Acción.<br>
 	 */
-	public void setAccion(int accion) {
+	public void setAccion(final int accion) {
 		this.accion = accion;
 	}
 
@@ -102,7 +102,7 @@ public class Cliente extends Thread {
 			ip = "localhost";
 		}
 		try {
-			cliente = new Socket(ip, puerto);
+			cliente = new Socket(ip, PUERTO);
 			miIp = cliente.getInetAddress().getHostAddress();
 			entrada = new ObjectInputStream(cliente.getInputStream());
 			salida = new ObjectOutputStream(cliente.getOutputStream());
@@ -161,7 +161,7 @@ public class Cliente extends Thread {
 					Paquete paquete = gson.fromJson(cadenaLeida, Paquete.class);
 					switch (paquete.getComando()) {
 					case Comando.REGISTRO:
-						if (paquete.getMensaje().equals(Paquete.msjExito)) {
+						if (paquete.getMensaje().equals(Paquete.MSJEXITO)) {
 							// Abro el menu para la creaci�n del personaje
 							MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(this, paquetePersonaje);
 							menuCreacionPJ.setVisible(true);
@@ -178,7 +178,7 @@ public class Cliente extends Thread {
 							// Indico que el usuario ya inicio sesion
 							paqueteUsuario.setInicioSesion(true);
 						} else {
-							if (paquete.getMensaje().equals(Paquete.msjFracaso)) {
+							if (paquete.getMensaje().equals(Paquete.MSJFRACASO)) {
 								JOptionPane.showMessageDialog(null, "No se pudo registrar.");
 							}
 							// El usuario no pudo iniciar sesión
@@ -186,13 +186,13 @@ public class Cliente extends Thread {
 						}
 						break;
 					case Comando.INICIOSESION:
-						if (paquete.getMensaje().equals(Paquete.msjExito)) {
-							// El usuario ya inicio sesi�n
+						if (paquete.getMensaje().equals(Paquete.MSJEXITO)) {
+							// El usuario ya inicio sesión
 							paqueteUsuario.setInicioSesion(true);
 							// Recibo el paquete personaje con los datos
 							paquetePersonaje = (PaquetePersonaje) gson.fromJson(cadenaLeida, PaquetePersonaje.class);
 						} else {
-							if (paquete.getMensaje().equals(Paquete.msjFracaso)) {
+							if (paquete.getMensaje().equals(Paquete.MSJFRACASO)) {
 								JOptionPane.showMessageDialog(null,
 										"Error al iniciar sesión. Revise el usuario y la contraseña");
 							}
@@ -222,7 +222,8 @@ public class Cliente extends Thread {
 				// Le envio el paquete con el mapa seleccionado
 				salida.writeObject(gson.toJson(paquetePersonaje));
 				// Instancio el juego y cargo los recursos
-				wome = new Juego("World Of the Middle Earth", 800, 600, this, paquetePersonaje);
+				wome = new Juego("World Of the Middle Earth", Constantes.ANCHOPANTALLA, Constantes.ALTOPANTALLA, this,
+						paquetePersonaje);
 				// Muestro el menu de carga
 				menuCarga = new MenuCarga(this);
 				menuCarga.setVisible(true);
@@ -255,7 +256,7 @@ public class Cliente extends Thread {
 	 * @param cliente
 	 *            Socket del cliente. <br>
 	 */
-	public void setSocket(Socket cliente) {
+	public void setSocket(final Socket cliente) {
 		this.cliente = cliente;
 	}
 
@@ -274,7 +275,7 @@ public class Cliente extends Thread {
 	 * @param miIp
 	 *            IP del jugador. <br>
 	 */
-	public void setMiIp(String miIp) {
+	public void setMiIp(final String miIp) {
 		this.miIp = miIp;
 	}
 
@@ -293,7 +294,7 @@ public class Cliente extends Thread {
 	 * @param entrada
 	 *            Entrada. <br>
 	 */
-	public void setEntrada(ObjectInputStream entrada) {
+	public void setEntrada(final ObjectInputStream entrada) {
 		this.entrada = entrada;
 	}
 
@@ -310,8 +311,9 @@ public class Cliente extends Thread {
 	 * Establece la salida. <br>
 	 * 
 	 * @param salida
+	 *            Salida. <br>
 	 */
-	public void setSalida(ObjectOutputStream salida) {
+	public void setSalida(final ObjectOutputStream salida) {
 		this.salida = salida;
 	}
 
@@ -357,7 +359,7 @@ public class Cliente extends Thread {
 	 * @param paqueteActualizado
 	 *            Valores actualizados del jugador. <br>
 	 */
-	public void actualizarItems(PaquetePersonaje paqueteActualizado) {
+	public void actualizarItems(final PaquetePersonaje paqueteActualizado) {
 		if (paquetePersonaje.getCantidadObjetosInventario() != paqueteActualizado.getCantidadObjetosInventario()) {
 			paquetePersonaje.añadirItem(paqueteActualizado.getItems().get(paqueteActualizado.getItems().size() - 1));
 		}

@@ -47,7 +47,7 @@ public class MenuBatalla {
 	 * @param personaje
 	 *            Personaje. <br>
 	 */
-	public MenuBatalla(boolean habilitado, Personaje personaje) {
+	public MenuBatalla(final boolean habilitado, final Personaje personaje) {
 		this.habilitado = habilitado;
 		this.personaje = personaje;
 	}
@@ -58,7 +58,7 @@ public class MenuBatalla {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficar(Graphics g) {
+	public void graficar(final Graphics g) {
 		if (habilitado) {
 			g.drawImage(Recursos.menuBatalla, X, Y, null);
 		} else {
@@ -100,7 +100,7 @@ public class MenuBatalla {
 	 *            Posición Y mouse. <br>
 	 * @return Botón clickeado. <br>
 	 */
-	public int getBotonClickeado(int mouseX, int mouseY) {
+	public int getBotonClickeado(final int mouseX, final int mouseY) {
 		if (!habilitado) {
 			return 0;
 		}
@@ -121,7 +121,7 @@ public class MenuBatalla {
 	 *            Posición Y mouse. <br>
 	 * @return true si esta en un botón, false de lo contrario. <br>
 	 */
-	public boolean clickEnMenu(int mouseX, int mouseY) {
+	public boolean clickEnMenu(final int mouseX, final int mouseY) {
 		if (mouseX >= X && mouseX <= X + Recursos.menuBatalla.getWidth() && mouseY >= Y
 				&& mouseY <= Y + Recursos.menuBatalla.getHeight()) {
 			return habilitado;
@@ -135,7 +135,7 @@ public class MenuBatalla {
 	 * @param b
 	 *            Indicador. <br>
 	 */
-	public void setHabilitado(boolean b) {
+	public void setHabilitado(final boolean b) {
 		habilitado = b;
 	}
 }

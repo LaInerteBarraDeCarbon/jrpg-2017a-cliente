@@ -22,7 +22,7 @@ public class PilaDeTiles {
 	 * @param nodo
 	 *            Nodo de pila. <br>
 	 */
-	public void push(NodoDePila nodo) {
+	public void push(final NodoDePila nodo) {
 		nodo.establecerSiguiente(ptrPila);
 		ptrPila = nodo;
 	}

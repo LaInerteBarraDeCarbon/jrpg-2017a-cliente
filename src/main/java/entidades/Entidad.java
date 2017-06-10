@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
+import estados.Estado;
+import interfaz.MenuInfoPersonaje;
 import juego.Juego;
 import juego.Pantalla;
 import mensajeria.PaqueteBatalla;
@@ -20,9 +22,6 @@ import mundo.Grafo;
 import mundo.Mundo;
 import mundo.Nodo;
 import recursos.Recursos;
-import entidades.Animacion;
-import estados.Estado;
-import interfaz.MenuInfoPersonaje;
 
 /**
  * Clase que administra la personaje desde lo visual, a cómo se ve, cómo se
@@ -107,35 +106,35 @@ public class Entidad {
 	/**
 	 * Movimiento horizontal derecha. <br>
 	 */
-	private static final int horizontalDer = 4;
+	private static final int HORIZONTALDER = 4;
 	/**
 	 * Movimiento horizontal izquierda. <br>
 	 */
-	private static final int horizontalIzq = 0;
+	private static final int HORIZONTALIZQ = 0;
 	/**
 	 * Movimiento vertical superior. <br>
 	 */
-	private static final int verticalSup = 2;
+	private static final int VERTICALSUP = 2;
 	/**
 	 * Movimiento vertical inferior. <br>
 	 */
-	private static final int verticalInf = 6;
+	private static final int VERTICALINF = 6;
 	/**
 	 * Movimiento diagonal inferior izquierda. <br>
 	 */
-	private static final int diagonalInfIzq = 7;
+	private static final int DIAGONALINFIZQ = 7;
 	/**
 	 * Movimiento diagonal inferior derecha. <br>
 	 */
-	private static final int diagonalInfDer = 5;
+	private static final int DIAGONALINFDER = 5;
 	/**
 	 * Movimiento diagonal superior derecha. <br>
 	 */
-	private static final int diagonalSupDer = 3;
+	private static final int DIAGONALSUPDER = 3;
 	/**
 	 * Movimiento diagonal superior izquierda. <br>
 	 */
-	private static final int diagonalSupIzq = 1;
+	private static final int DIAGONALSUPIZQ = 1;
 	/**
 	 * Movimiento hacia. <br>
 	 */
@@ -241,8 +240,9 @@ public class Entidad {
 	 * @param velAnimacion
 	 *            Velocidad de animación. <br>
 	 */
-	public Entidad(Juego juego, Mundo mundo, int ancho, int alto, String nombre, float spawnX, float spawnY,
-			LinkedList<BufferedImage[]> animaciones, int velAnimacion) {
+	public Entidad(final Juego juego, final Mundo mundo, final int ancho, final int alto, final String nombre,
+			final float spawnX, final float spawnY, final LinkedList<BufferedImage[]> animaciones,
+			final int velAnimacion) {
 		this.juego = juego;
 		this.ancho = ancho;
 		this.alto = alto;
@@ -341,7 +341,7 @@ public class Entidad {
 					if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId()
 							&& juego.getEscuchaMensajes().getPersonajesConectados().get(actual.getIdPersonaje()) != null
 							&& juego.getEscuchaMensajes().getPersonajesConectados().get(actual.getIdPersonaje())
-									.getEstado() == Estado.estadoJuego) {
+									.getEstado() == Estado.ESTADOJUEGO) {
 						if (tileMoverme[0] == tilePersonajes[0] && tileMoverme[1] == tilePersonajes[1]) {
 							idEnemigo = actual.getIdPersonaje();
 							juego.getEstadoJuego().setHaySolicitud(true,
@@ -398,28 +398,28 @@ public class Entidad {
 			xFinal = Mundo.dosDaIso(tileFinal[0], tileFinal[1])[0];
 			yFinal = Mundo.dosDaIso(tileFinal[0], tileFinal[1])[1];
 			if (tileFinal[0] == tileActual[0] - 1 && tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = verticalSup;
+				movimientoHacia = VERTICALSUP;
 			}
 			if (tileFinal[0] == tileActual[0] + 1 && tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = verticalInf;
+				movimientoHacia = VERTICALINF;
 			}
 			if (tileFinal[0] == tileActual[0] - 1 && tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = horizontalIzq;
+				movimientoHacia = HORIZONTALIZQ;
 			}
 			if (tileFinal[0] == tileActual[0] + 1 && tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = horizontalDer;
+				movimientoHacia = HORIZONTALDER;
 			}
 			if (tileFinal[0] == tileActual[0] - 1 && tileFinal[1] == tileActual[1]) {
-				movimientoHacia = diagonalSupIzq;
+				movimientoHacia = DIAGONALSUPIZQ;
 			}
 			if (tileFinal[0] == tileActual[0] + 1 && tileFinal[1] == tileActual[1]) {
-				movimientoHacia = diagonalInfDer;
+				movimientoHacia = DIAGONALINFDER;
 			}
 			if (tileFinal[0] == tileActual[0] && tileFinal[1] == tileActual[1] - 1) {
-				movimientoHacia = diagonalSupDer;
+				movimientoHacia = DIAGONALSUPDER;
 			}
 			if (tileFinal[0] == tileActual[0] && tileFinal[1] == tileActual[1] + 1) {
-				movimientoHacia = diagonalInfIzq;
+				movimientoHacia = DIAGONALINFIZQ;
 			}
 			enMovimiento = true;
 		}
@@ -433,31 +433,31 @@ public class Entidad {
 		dy = 0;
 		double paso = 1;
 		if (enMovimiento && !(x == xFinal && y == yFinal - 32)) {
-			if (movimientoHacia == verticalSup) {
+			if (movimientoHacia == VERTICALSUP) {
 				dy -= paso;
 			} else {
-				if (movimientoHacia == verticalInf) {
+				if (movimientoHacia == VERTICALINF) {
 					dy += paso;
 				} else {
-					if (movimientoHacia == horizontalDer) {
+					if (movimientoHacia == HORIZONTALDER) {
 						dx += paso;
 					} else {
-						if (movimientoHacia == horizontalIzq) {
+						if (movimientoHacia == HORIZONTALIZQ) {
 							dx -= paso;
 						} else {
-							if (movimientoHacia == diagonalInfDer) {
+							if (movimientoHacia == DIAGONALINFDER) {
 								dx += paso;
 								dy += paso / 2;
 							} else {
-								if (movimientoHacia == diagonalInfIzq) {
+								if (movimientoHacia == DIAGONALINFIZQ) {
 									dx -= paso;
 									dy += paso / 2;
 								} else {
-									if (movimientoHacia == diagonalSupDer) {
+									if (movimientoHacia == DIAGONALSUPDER) {
 										dx += paso;
 										dy -= paso / 2;
 									} else {
-										if (movimientoHacia == diagonalSupIzq) {
+										if (movimientoHacia == DIAGONALSUPIZQ) {
 											dx -= paso;
 											dy -= paso / 2;
 										}
@@ -487,7 +487,7 @@ public class Entidad {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficar(Graphics g) {
+	public void graficar(final Graphics g) {
 		drawX = (int) (x - juego.getCamara().getxOffset());
 		drawY = (int) (y - juego.getCamara().getyOffset());
 		g.drawImage(getFrameAnimacionActual(), drawX, drawY + 4, ancho, alto, null);
@@ -499,7 +499,7 @@ public class Entidad {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public void graficarNombre(Graphics g) {
+	public void graficarNombre(final Graphics g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Book Antiqua", Font.BOLD, 15));
 		Pantalla.centerString(g, new java.awt.Rectangle(drawX + 32, drawY - 20, 0, 10), nombre);
@@ -511,28 +511,28 @@ public class Entidad {
 	 * @return Animación del frame. <br>
 	 */
 	private BufferedImage getFrameAnimacionActual() {
-		if (movimientoHacia == horizontalIzq) {
+		if (movimientoHacia == HORIZONTALIZQ) {
 			return moverIzq.getFrameActual();
 		} else {
-			if (movimientoHacia == horizontalDer) {
+			if (movimientoHacia == HORIZONTALDER) {
 				return moverDer.getFrameActual();
 			} else {
-				if (movimientoHacia == verticalSup) {
+				if (movimientoHacia == VERTICALSUP) {
 					return moverArriba.getFrameActual();
 				} else {
-					if (movimientoHacia == verticalInf) {
+					if (movimientoHacia == VERTICALINF) {
 						return moverAbajo.getFrameActual();
 					} else {
-						if (movimientoHacia == diagonalInfIzq) {
+						if (movimientoHacia == DIAGONALINFIZQ) {
 							return moverAbajoIzq.getFrameActual();
 						} else {
-							if (movimientoHacia == diagonalInfDer) {
+							if (movimientoHacia == DIAGONALINFDER) {
 								return moverAbajoDer.getFrameActual();
 							} else {
-								if (movimientoHacia == diagonalSupIzq) {
+								if (movimientoHacia == DIAGONALSUPIZQ) {
 									return moverArribaIzq.getFrameActual();
 								} else {
-									if (movimientoHacia == diagonalSupDer) {
+									if (movimientoHacia == DIAGONALSUPDER) {
 										return moverArribaDer.getFrameActual();
 									}
 								}
@@ -560,28 +560,28 @@ public class Entidad {
 	 * @return Frame movimiento. <br>
 	 */
 	private int getFrame() {
-		if (movimientoHacia == horizontalIzq) {
+		if (movimientoHacia == HORIZONTALIZQ) {
 			return moverIzq.getFrame();
 		} else {
-			if (movimientoHacia == horizontalDer) {
+			if (movimientoHacia == HORIZONTALDER) {
 				return moverDer.getFrame();
 			} else {
-				if (movimientoHacia == verticalSup) {
+				if (movimientoHacia == VERTICALSUP) {
 					return moverArriba.getFrame();
 				} else {
-					if (movimientoHacia == verticalInf) {
+					if (movimientoHacia == VERTICALINF) {
 						return moverAbajo.getFrame();
 					} else {
-						if (movimientoHacia == diagonalInfIzq) {
+						if (movimientoHacia == DIAGONALINFIZQ) {
 							return moverAbajoIzq.getFrame();
 						} else {
-							if (movimientoHacia == diagonalInfDer) {
+							if (movimientoHacia == DIAGONALINFDER) {
 								return moverAbajoDer.getFrame();
 							} else {
-								if (movimientoHacia == diagonalSupIzq) {
+								if (movimientoHacia == DIAGONALSUPIZQ) {
 									return moverArribaIzq.getFrame();
 								} else {
-									if (movimientoHacia == diagonalSupDer) {
+									if (movimientoHacia == DIAGONALSUPDER) {
 										return moverArribaDer.getFrame();
 									}
 								}
@@ -624,7 +624,7 @@ public class Entidad {
 	 *            Posición Y final. <br>
 	 * @return Camino más corto. <br>
 	 */
-	private PilaDeTiles caminoMasCorto(int xInicial, int yInicial, int xFinal, int yFinal) {
+	private PilaDeTiles caminoMasCorto(final int xInicial, final int yInicial, final int xFinal, final int yFinal) {
 		Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
 		// Transformo las coordenadas iniciales y finales en indices
 		int nodoInicial = (yInicial - grafoLibres.obtenerNodos()[0].obtenerY())
@@ -708,7 +708,7 @@ public class Entidad {
 	 *            Nodo dos. <br>
 	 * @return true si están en diagonal, false de lo contrario. <br>
 	 */
-	private boolean estanEnDiagonal(Nodo nodoUno, Nodo nodoDos) {
+	private boolean estanEnDiagonal(final Nodo nodoUno, final Nodo nodoDos) {
 		if (nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY()) {
 			return false;
 		}
@@ -730,7 +730,7 @@ public class Entidad {
 	 * @param x
 	 *            Posición X. <br>
 	 */
-	public void setX(float x) {
+	public void setX(final float x) {
 		this.x = x;
 	}
 
@@ -749,7 +749,7 @@ public class Entidad {
 	 * @param y
 	 *            Posición Y. <br>
 	 */
-	public void setY(float y) {
+	public void setY(final float y) {
 		this.y = y;
 	}
 
@@ -768,7 +768,7 @@ public class Entidad {
 	 * @param ancho
 	 *            Ancho. <br>
 	 */
-	public void setAncho(int ancho) {
+	public void setAncho(final int ancho) {
 		this.ancho = ancho;
 	}
 
@@ -787,7 +787,7 @@ public class Entidad {
 	 * @param alto
 	 *            Alto. <br>
 	 */
-	public void setAlto(int alto) {
+	public void setAlto(final int alto) {
 		this.alto = alto;
 	}
 

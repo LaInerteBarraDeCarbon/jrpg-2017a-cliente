@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
-
 	/**
 	 * ID del personaje. <br>
 	 */
@@ -43,7 +42,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 	 * @param id
 	 *            ID del personaje. <br>
 	 */
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -62,7 +61,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 	 * @param idEnemigo
 	 *            ID del enemigo. <br>
 	 */
-	public void setIdEnemigo(int idEnemigo) {
+	public void setIdEnemigo(final int idEnemigo) {
 		this.idEnemigo = idEnemigo;
 	}
 
@@ -81,7 +80,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 	 * @param miTurno
 	 *            Condición del turno. <br>
 	 */
-	public void setMiTurno(boolean miTurno) {
+	public void setMiTurno(final boolean miTurno) {
 		this.miTurno = miTurno;
 	}
 }

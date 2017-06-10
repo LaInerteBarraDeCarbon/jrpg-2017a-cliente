@@ -2,14 +2,12 @@ package entidades;
 
 import java.awt.image.BufferedImage;
 
+import utilitarias.Constantes;
+
 /**
  * Clase que administra la animación. <br>
  */
 public class Animacion {
-	/**
-	 * El inicio de todo. <br>
-	 */
-	private static final int CERO = 0;
 	/**
 	 * Velocidad de la animación. <br>
 	 */
@@ -39,22 +37,25 @@ public class Animacion {
 	 * @param frames
 	 *            Frames a realizar. <br>
 	 */
-	public Animacion(int velocidad, BufferedImage[] frames) {
+	public Animacion(final int velocidad, final BufferedImage[] frames) {
 		this.velocidad = velocidad;
 		this.frames = frames;
-		indice = CERO;
-		timer = CERO;
+		indice = Constantes.CERO;
+		timer = Constantes.CERO;
 		ultimoTiempo = System.currentTimeMillis();
 	}
 
+	/**
+	 * Actualiza la animación. <br>
+	 */
 	public void actualizar() {
 		timer += System.currentTimeMillis() - ultimoTiempo;
 		ultimoTiempo = System.currentTimeMillis();
 		if (timer > velocidad) {
 			indice++;
-			timer = CERO;
+			timer = Constantes.CERO;
 			if (indice >= frames.length) {
-				indice = CERO;
+				indice = Constantes.CERO;
 			}
 		}
 	}
@@ -63,7 +64,7 @@ public class Animacion {
 	 * Resetea el ínice. <br>
 	 */
 	public void reset() {
-		indice = CERO;
+		indice = Constantes.CERO;
 	}
 
 	/**

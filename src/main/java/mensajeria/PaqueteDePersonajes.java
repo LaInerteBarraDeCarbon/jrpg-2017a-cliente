@@ -27,7 +27,7 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 	 * @param personajes
 	 *            Lista de los personajes. <br>
 	 */
-	public PaqueteDePersonajes(Map<Integer, PaquetePersonaje> personajes) {
+	public PaqueteDePersonajes(final Map<Integer, PaquetePersonaje> personajes) {
 		this.personajes = personajes;
 	}
 
@@ -48,5 +48,4 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 		obj = super.clone();
 		return obj;
 	}
-
 }

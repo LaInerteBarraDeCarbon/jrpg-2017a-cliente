@@ -52,8 +52,8 @@ public class EstadoDePersonaje {
 	 * @param miniaturaPersonaje
 	 *            Miniatura del personaje. <br>
 	 */
-	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, Personaje personaje,
-			BufferedImage miniaturaPersonaje) {
+	public static void dibujarEstadoDePersonaje(final Graphics g, final int x, final int y, final Personaje personaje,
+			final BufferedImage miniaturaPersonaje) {
 		int drawBarra = 0;
 		g.drawImage(Recursos.estadoPersonaje, x, y, null);
 		g.drawImage(miniaturaPersonaje, x + 10, y + 9, ANCHOMINIATURA, ALTOMINIATURA, null);
@@ -103,8 +103,8 @@ public class EstadoDePersonaje {
 	 * @param miniaturaPersonaje
 	 *            Miniatura del personaje. <br>
 	 */
-	public static void dibujarEstadoDePersonaje(Graphics g, int x, int y, PaquetePersonaje personaje,
-			BufferedImage miniaturaPersonaje) {
+	public static void dibujarEstadoDePersonaje(final Graphics g, final int x, final int y,
+			final PaquetePersonaje personaje, final BufferedImage miniaturaPersonaje) {
 		int drawBarra = 0;
 		g.drawImage(Recursos.estadoPersonaje, x, y, null);
 		g.drawImage(miniaturaPersonaje, x + 10, y + 9, ANCHOMINIATURA, ALTOMINIATURA, null);

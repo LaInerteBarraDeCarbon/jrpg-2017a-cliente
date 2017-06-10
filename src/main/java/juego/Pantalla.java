@@ -48,21 +48,21 @@ public class Pantalla {
 	 * Construye la pantalla del juego. <br>
 	 * Se encarga de mostrar desde el mundo hasta el inventario. <br>
 	 * 
-	 * @param NOMBRE
+	 * @param nombre
 	 *            Nombre del juego. <br>
-	 * @param ANCHO
+	 * @param ancho
 	 *            Ancho de pantalla. <br>
-	 * @param ALTO
+	 * @param alto
 	 *            Alto de pantalla. <br>
 	 * @param cliente
 	 *            Usuario. <br>
 	 */
-	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
-		pantalla = new JFrame(NOMBRE);
+	public Pantalla(final String nombre, final int ancho, final int alto, final Cliente cliente) {
+		pantalla = new JFrame(nombre);
 		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
 				"custom cursor"));
-		pantalla.setSize(ANCHO, ALTO);
+		pantalla.setSize(ancho, alto);
 		pantalla.setResizable(false);
 		pantalla.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		pantalla.addWindowListener(new WindowAdapter() {
@@ -97,9 +97,9 @@ public class Pantalla {
 		pantalla.setLocationRelativeTo(null);
 		pantalla.setVisible(false);
 		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(ANCHO, ALTO));
-		canvas.setMaximumSize(new Dimension(ANCHO, ALTO));
-		canvas.setMinimumSize(new Dimension(ANCHO, ALTO));
+		canvas.setPreferredSize(new Dimension(ancho, alto));
+		canvas.setMaximumSize(new Dimension(ancho, alto));
+		canvas.setMinimumSize(new Dimension(ancho, alto));
 		canvas.setFocusable(false);
 		pantalla.add(canvas);
 		pantalla.pack();
@@ -140,7 +140,7 @@ public class Pantalla {
 	 * @param s
 	 *            String. <br>
 	 */
-	public static void centerString(Graphics g, Rectangle r, String s) {
+	public static void centerString(final Graphics g, final Rectangle r, final String s) {
 		FontRenderContext frc = new FontRenderContext(null, true, true);
 		Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
 		int rWidth = (int) Math.round(r2D.getWidth());

@@ -15,15 +15,15 @@ public abstract class Estado {
 	/**
 	 * Estado fuera de linea. <br>
 	 */
-	public static int estadoOffline = 0;
+	public static final int ESTADOOFFLINE = 0;
 	/**
 	 * Estado de conectado. <br>
 	 */
-	public static int estadoJuego = 1;
+	public static final int ESTADOJUEGO = 1;
 	/**
 	 * Estado dentro de batalla. <br>
 	 */
-	public static int estadoBatalla = 2;
+	public static final int ESTADOBATALLA = 2;
 
 	/**
 	 * Juego del usuario. <br>
@@ -36,7 +36,7 @@ public abstract class Estado {
 	 * @param juego
 	 *            Juego. <br>
 	 */
-	public Estado(Juego juego) {
+	public Estado(final Juego juego) {
 		this.juego = juego;
 	}
 
@@ -51,7 +51,7 @@ public abstract class Estado {
 	 * @param g
 	 *            Graficador. <br>
 	 */
-	public abstract void graficar(Graphics g);
+	public abstract void graficar(final Graphics g);
 
 	/**
 	 * Establece el estado del jugador. <br>
@@ -59,7 +59,7 @@ public abstract class Estado {
 	 * @param estado
 	 *            Estado actual. <br>
 	 */
-	public static void setEstado(Estado estado) {
+	public static void setEstado(final Estado estado) {
 		estadoActual = estado;
 	}
 
