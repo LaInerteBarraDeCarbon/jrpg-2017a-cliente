@@ -211,7 +211,6 @@ public class EstadoBatalla extends Estado {
 	private void ganarItem() {
 		if (paquetePersonaje.getCantidadObjetosInventario() < 9) {
 			int itemGanado = new Random().nextInt(19);
-			System.out.println("El personaje " + personaje.getNombre() + " gano un item: " + (itemGanado + 1));
 			itemGanado += 1;
 			paquetePersonaje.añadirItem(itemGanado);
 		}

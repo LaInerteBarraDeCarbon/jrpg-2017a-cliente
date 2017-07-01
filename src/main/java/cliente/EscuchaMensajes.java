@@ -110,7 +110,6 @@ public class EscuchaMensajes extends Thread {
 					paquetePersonaje = gson.fromJson(objetoLeido, PaquetePersonaje.class);
 					personajesConectados.remove(paquetePersonaje.getId());
 					personajesConectados.put(paquetePersonaje.getId(), paquetePersonaje);
-					// System.out.println(paquetePersonaje.getItems().get(7).getNombre());
 					if (juego.getPersonaje().getId() == paquetePersonaje.getId()) {
 						juego.actualizarPersonaje();
 						juego.getEstadoJuego().actualizarPersonaje();
