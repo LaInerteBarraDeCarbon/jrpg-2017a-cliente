@@ -321,7 +321,6 @@ public class EstadoBatalla extends Estado {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteAtacar));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexion con el servidor.");
-			e.printStackTrace();
 		}
 	}
 
@@ -353,7 +352,6 @@ public class EstadoBatalla extends Estado {
 			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor");
-			e.printStackTrace();
 		}
 	}
 

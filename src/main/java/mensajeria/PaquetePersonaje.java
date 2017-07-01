@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.swing.JOptionPane;
+
 import dominio.Inventario;
 import estados.Estado;
 
@@ -377,7 +379,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		try {
 			this.inventario.add(new Inventario(idItem, null, 0, 0, 0, 0, 0, null));
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Fallo al añadir el item.");
 		}
 	}
 
@@ -408,7 +410,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 					bonusMagia, foto));
 			asignarBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia);
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Fallo al añadir item con modificadores.");
 		}
 	}
 

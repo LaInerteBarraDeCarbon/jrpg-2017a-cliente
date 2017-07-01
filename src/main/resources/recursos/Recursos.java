@@ -13,8 +13,13 @@ import frames.MenuCarga;
 import mundo.Tile;
 
 public class Recursos {
-
+	/**
+	 * Cantidad de elementos. <br>
+	 */
 	private static int ELEMENTOS = 65;
+	/**
+	 * 
+	 */
 	private static int ANCHOBARRA = 345;
 
 	private static int ANCHO; // Ancho del frame a obtener

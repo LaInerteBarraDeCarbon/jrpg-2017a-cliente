@@ -2,6 +2,8 @@ package mensajeria;
 
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
 /**
  * Administra los distintos paquetes. <br>
  */
@@ -141,7 +143,7 @@ public class Paquete implements Serializable, Cloneable {
 		try {
 			obj = super.clone();
 		} catch (CloneNotSupportedException ex) {
-			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Fallo creacion de paquete.");
 		}
 		return obj;
 	}

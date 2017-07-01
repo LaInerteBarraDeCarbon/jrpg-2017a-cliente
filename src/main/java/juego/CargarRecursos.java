@@ -3,6 +3,8 @@ package juego;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import cliente.Cliente;
 import mensajeria.Comando;
 import recursos.Recursos;
@@ -35,11 +37,11 @@ public class CargarRecursos extends Thread {
 			try {
 				Recursos.cargar(cliente.getMenuCarga());
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Fallo al abrir el archivo imagen.");
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Fallo el formato de imagen/distribucion.");
 			} catch (IOException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Fallo importante de archivos de imagen.");
 			}
 			cliente.setAccion(Comando.SALIR);
 			cliente.notify();

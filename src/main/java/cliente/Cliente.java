@@ -109,7 +109,6 @@ public class Cliente extends Thread {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo al iniciar la aplicación. Revise la conexión con el servidor.");
 			System.exit(1);
-			e.printStackTrace();
 		}
 	}
 
@@ -236,7 +235,6 @@ public class Cliente extends Thread {
 			} catch (IOException | InterruptedException | ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor durante el inicio de sesión.");
 				System.exit(1);
-				e.printStackTrace();
 			}
 		}
 	}
