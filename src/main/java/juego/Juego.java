@@ -71,7 +71,7 @@ public class Juego implements Runnable {
 	 */
 	private Camara camara;
 	/**
-	 * Cliente del usuario. <br>
+	 * ClienteComandos del usuario. <br>
 	 */
 	private Cliente cliente;
 	/**
@@ -303,7 +303,7 @@ public class Juego implements Runnable {
 	/**
 	 * Devuelve el cliente del usuario. <br>
 	 * 
-	 * @return Cliente. <br>
+	 * @return ClienteComandos. <br>
 	 */
 	public Cliente getCliente() {
 		return cliente;

@@ -42,7 +42,7 @@ public class MenuRegistro extends JFrame {
 	 * Crea el menú de registro de usuario. <br>
 	 * 
 	 * @param cliente
-	 *            Cliente. <br>
+	 *            ClienteComandos. <br>
 	 */
 	public MenuRegistro(final Cliente cliente) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

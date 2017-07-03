@@ -42,6 +42,8 @@ public class Entidad {
 	private int alto;
 	/**
 	 * Posición X. <br>
+	 * 
+	 * 
 	 */
 	private float x;
 	/**
@@ -607,7 +609,6 @@ public class Entidad {
 					.writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
-			e.printStackTrace();
 		}
 	}
 

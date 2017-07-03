@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
+import comando.ClienteComandos;
 import frames.MenuCarga;
 import frames.MenuCreacionPj;
 import frames.MenuJugar;
@@ -45,11 +46,11 @@ public class Cliente extends Thread {
 	 */
 	private final Gson gson = new Gson();
 	/**
-	 * Usuario. <br>
+	 * Paquete del Usuario. <br>
 	 */
 	private PaqueteUsuario paqueteUsuario;
 	/**
-	 * Personaje. <br>
+	 * Paquete del Personaje. <br>
 	 */
 	private PaquetePersonaje paquetePersonaje;
 	/**
@@ -64,26 +65,6 @@ public class Cliente extends Thread {
 	 * Puerto a utilizar. <br>
 	 */
 	private static final int PUERTO = 9999;
-
-	/**
-	 * Devuelve la acción. <br>
-	 * 
-	 * @return Ación. <br>
-	 */
-	public int getAccion() {
-		return accion;
-	}
-
-	/**
-	 * Establece la acción. <br>
-	 * 
-	 * @param accion
-	 *            Acción.<br>
-	 */
-	public void setAccion(final int accion) {
-		this.accion = accion;
-	}
-
 	/**
 	 * Juego del cliente. <br>
 	 */
@@ -126,7 +107,7 @@ public class Cliente extends Thread {
 	}
 
 	/**
-	 * Función madre de Cliente. <br>
+	 * Función madre de ClienteComandos. <br>
 	 */
 	public void run() {
 		synchronized (this) {
@@ -158,6 +139,9 @@ public class Cliente extends Thread {
 					// Recibo el paquete desde el servidor
 					String cadenaLeida = (String) entrada.readObject();
 					Paquete paquete = gson.fromJson(cadenaLeida, Paquete.class);
+
+					ClienteComandos comandos = (ClienteComandos) paquete.;
+
 					switch (paquete.getComando()) {
 					case Comando.REGISTRO:
 						if (paquete.getMensaje().equals(Paquete.MSJEXITO)) {
@@ -208,6 +192,7 @@ public class Cliente extends Thread {
 					default:
 						break;
 					}
+
 				}
 				// Creo un paquete con el comando mostrar mapas
 				paquetePersonaje.setComando(Comando.MOSTRARMAPAS);
@@ -361,5 +346,24 @@ public class Cliente extends Thread {
 		if (paquetePersonaje.getCantidadObjetosInventario() != paqueteActualizado.getCantidadObjetosInventario()) {
 			paquetePersonaje.añadirItem(paqueteActualizado.getItems().get(paqueteActualizado.getItems().size() - 1));
 		}
+	}
+
+	/**
+	 * Devuelve la acción. <br>
+	 * 
+	 * @return Ación. <br>
+	 */
+	public int getAccion() {
+		return accion;
+	}
+
+	/**
+	 * Establece la acción. <br>
+	 * 
+	 * @param accion
+	 *            Acción.<br>
+	 */
+	public void setAccion(final int accion) {
+		this.accion = accion;
 	}
 }

@@ -69,7 +69,7 @@ public class MenuCreacionPj extends JFrame {
 	 * Menú para la creación de un personaje. <br>
 	 * 
 	 * @param cliente
-	 *            Cliente que lo crea. <br>
+	 *            ClienteComandos que lo crea. <br>
 	 * @param personaje
 	 *            Personaje del cliente. <br>
 	 *            S

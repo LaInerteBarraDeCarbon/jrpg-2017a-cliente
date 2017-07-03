@@ -30,7 +30,7 @@ public class EscuchaMensajes extends Thread {
 	 */
 	private Juego juego;
 	/**
-	 * Cliente. <br>
+	 * Comandos. <br>
 	 */
 	private Cliente cliente;
 	/**

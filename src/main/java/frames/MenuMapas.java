@@ -34,7 +34,7 @@ public class MenuMapas extends JFrame {
 	 * Crea el menú de mapas disponibles. <br>
 	 * 
 	 * @param cliente
-	 *            Cliente. <br>
+	 *            ClienteComandos. <br>
 	 */
 	public MenuMapas(final Cliente cliente) {
 

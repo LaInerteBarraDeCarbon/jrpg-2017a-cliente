@@ -147,4 +147,23 @@ public class Paquete implements Serializable, Cloneable {
 		}
 		return obj;
 	}
+
+	/**
+	 * Devuelve los comandos del paquete a utilizar. <br>
+	 * 
+	 * @param paquete
+	 *            Paquete a usar. <br>
+	 * @return Comandos del paquete. <br>
+	 */
+	public Comando getComandoPaquete(final String paquete) {
+		try {
+			Comando comando;
+			comando = (Comando) Class.forName(paquete + "." + Comando.CLASES[this.comando]).newInstance();
+			comando.setPaquete(this);
+			return comando;
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			JOptionPane.showMessageDialog(null, "Falló paquetería interna.");
+			return null;
+		}
+	}
 }

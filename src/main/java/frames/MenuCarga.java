@@ -30,7 +30,7 @@ public class MenuCarga extends JFrame {
 	 * Carga la vista . <br>
 	 * 
 	 * @param cliente
-	 *            Cliente. <br>
+	 *            ClienteComandos. <br>
 	 */
 	public MenuCarga(final Cliente cliente) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

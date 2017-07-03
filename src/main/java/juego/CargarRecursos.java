@@ -14,7 +14,7 @@ import recursos.Recursos;
  */
 public class CargarRecursos extends Thread {
 	/**
-	 * Cliente. <br>
+	 * ClienteComandos. <br>
 	 */
 	private Cliente cliente;
 
@@ -22,7 +22,7 @@ public class CargarRecursos extends Thread {
 	 * Carga los recursos del cliente. <br>
 	 * 
 	 * @param cliente
-	 *            Cliente. <br>
+	 *            ClienteComandos. <br>
 	 */
 	public CargarRecursos(Cliente cliente) {
 		this.cliente = cliente;
