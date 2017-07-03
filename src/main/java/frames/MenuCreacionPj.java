@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import cliente.Cliente;
+import comando.Registro;
 import mensajeria.PaquetePersonaje;
 import utilitarias.Constantes;
 
@@ -68,12 +68,12 @@ public class MenuCreacionPj extends JFrame {
 	/**
 	 * Menú para la creación de un personaje. <br>
 	 * 
-	 * @param cliente
+	 * @param registro
 	 *            Cliente que lo crea. <br>
 	 * @param personaje
 	 *            Personaje del cliente. <br>
 	 */
-	public MenuCreacionPj(final Cliente cliente, final PaquetePersonaje personaje) {
+	public MenuCreacionPj(final Registro registro, final PaquetePersonaje personaje) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
 				"custom cursor"));
@@ -96,8 +96,8 @@ public class MenuCreacionPj extends JFrame {
 				personaje.setFuerza(Integer.parseInt(vecFuerza[cbxCasta.getSelectedIndex()]));
 				personaje.setDestreza(Integer.parseInt(vecDestreza[cbxCasta.getSelectedIndex()]));
 				personaje.setInteligencia(Integer.parseInt(vecInteligencia[cbxCasta.getSelectedIndex()]));
-				synchronized (cliente) {
-					cliente.notify();
+				synchronized (registro) {
+					registro.notify();
 				}
 				dispose();
 			}
@@ -208,8 +208,8 @@ public class MenuCreacionPj extends JFrame {
 				personaje.setFuerza(Integer.parseInt(vecFuerza[cbxCasta.getSelectedIndex()]));
 				personaje.setDestreza(Integer.parseInt(vecDestreza[cbxCasta.getSelectedIndex()]));
 				personaje.setInteligencia(Integer.parseInt(vecInteligencia[cbxCasta.getSelectedIndex()]));
-				synchronized (cliente) {
-					cliente.notify();
+				synchronized (registro) {
+					registro.notify();
 				}
 				dispose();
 			}

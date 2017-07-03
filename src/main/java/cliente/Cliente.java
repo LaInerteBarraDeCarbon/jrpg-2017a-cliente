@@ -314,4 +314,14 @@ public class Cliente extends Thread {
 	public void setAccion(final int accion) {
 		this.accion = accion;
 	}
+
+	/**
+	 * Establece el paquete de personaje. <br>
+	 * 
+	 * @param paquetePersonaje
+	 *            Paquete del personaje. <br>
+	 */
+	public void setPaquetePersonaje(final PaquetePersonaje paquetePersonaje) {
+		this.paquetePersonaje = paquetePersonaje;
+	}
 }
