@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 
 import comando.ClienteComandos;
 import frames.MenuCarga;
-import frames.MenuCreacionPj;
 import frames.MenuJugar;
 import frames.MenuMapas;
 import juego.Juego;
@@ -139,60 +138,9 @@ public class Cliente extends Thread {
 					// Recibo el paquete desde el servidor
 					String cadenaLeida = (String) entrada.readObject();
 					Paquete paquete = gson.fromJson(cadenaLeida, Paquete.class);
-
 					ClienteComandos comandos = (ClienteComandos) paquete.getComandoPaquete(ClienteComandos.PACKAGE);
-
-					switch (paquete.getComando()) {
-					case Comando.REGISTRO:
-						if (paquete.getMensaje().equals(Paquete.MSJEXITO)) {
-							// Abro el menu para la creaci�n del personaje
-							MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(this, paquetePersonaje);
-							menuCreacionPJ.setVisible(true);
-							// Espero a que el usuario cree el personaje
-							wait();
-							// Le envio los datos al servidor
-							paquetePersonaje.setComando(Comando.CREACIONPJ);
-							salida.writeObject(gson.toJson(paquetePersonaje));
-							JOptionPane.showMessageDialog(null, "Registro exitoso.");
-							// Recibo el paquete personaje con los datos (la id
-							// incluida)
-							paquetePersonaje = (PaquetePersonaje) gson.fromJson((String) entrada.readObject(),
-									PaquetePersonaje.class);
-							// Indico que el usuario ya inicio sesion
-							paqueteUsuario.setInicioSesion(true);
-						} else {
-							if (paquete.getMensaje().equals(Paquete.MSJFRACASO)) {
-								JOptionPane.showMessageDialog(null, "No se pudo registrar.");
-							}
-							// El usuario no pudo iniciar sesión
-							paqueteUsuario.setInicioSesion(false);
-						}
-						break;
-					case Comando.INICIOSESION:
-						if (paquete.getMensaje().equals(Paquete.MSJEXITO)) {
-							// El usuario ya inicio sesión
-							paqueteUsuario.setInicioSesion(true);
-							// Recibo el paquete personaje con los datos
-							paquetePersonaje = (PaquetePersonaje) gson.fromJson(cadenaLeida, PaquetePersonaje.class);
-						} else {
-							if (paquete.getMensaje().equals(Paquete.MSJFRACASO)) {
-								JOptionPane.showMessageDialog(null,
-										"Error al iniciar sesión. Revise el usuario y la contraseña");
-							}
-							// El usuario no pudo iniciar sesión
-							paqueteUsuario.setInicioSesion(false);
-						}
-						break;
-					case Comando.SALIR:
-						// El usuario no pudo iniciar sesión
-						paqueteUsuario.setInicioSesion(false);
-						salida.writeObject(gson.toJson(new Paquete(Comando.DESCONECTAR), Paquete.class));
-						cliente.close();
-						break;
-					default:
-						break;
-					}
-
+					comandos.setCliente(this);
+					comandos.ejecutar();
 				}
 				// Creo un paquete con el comando mostrar mapas
 				paquetePersonaje.setComando(Comando.MOSTRARMAPAS);

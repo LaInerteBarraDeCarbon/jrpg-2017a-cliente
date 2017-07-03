@@ -8,16 +8,9 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 
-import estados.Estado;
-import estados.EstadoBatalla;
+import comando.ClienteComandos;
 import juego.Juego;
-import mensajeria.Comando;
 import mensajeria.Paquete;
-import mensajeria.PaqueteAtacar;
-import mensajeria.PaqueteBatalla;
-import mensajeria.PaqueteDeMovimientos;
-import mensajeria.PaqueteDePersonajes;
-import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 
@@ -69,53 +62,14 @@ public class EscuchaMensajes extends Thread {
 	public void run() {
 		try {
 			Paquete paquete;
-			PaquetePersonaje paquetePersonaje;
-			@SuppressWarnings("unused")
-			PaqueteMovimiento personaje;
-			PaqueteBatalla paqueteBatalla;
-			PaqueteAtacar paqueteAtacar;
-			@SuppressWarnings("unused")
-			PaqueteFinalizarBatalla paqueteFinalizarBatalla;
 			personajesConectados = new HashMap<>();
 			ubicacionPersonajes = new HashMap<>();
 			while (true) {
 				String objetoLeido = (String) entrada.readObject();
 				paquete = gson.fromJson(objetoLeido, Paquete.class);
-				switch (paquete.getComando()) {
-				case Comando.CONEXION:
-					personajesConectados = gson.fromJson(objetoLeido, PaqueteDePersonajes.class).getPersonajes();
-					break;
-				case Comando.MOVIMIENTO:
-					ubicacionPersonajes = gson.fromJson(objetoLeido, PaqueteDeMovimientos.class).getPersonajes();
-					break;
-				case Comando.BATALLA:
-					paqueteBatalla = gson.fromJson(objetoLeido, PaqueteBatalla.class);
-					juego.getPersonaje().setEstado(Estado.ESTADOBATALLA);
-					Estado.setEstado(null);
-					juego.setEstadoBatalla(new EstadoBatalla(juego, paqueteBatalla));
-					Estado.setEstado(juego.getEstadoBatalla());
-					break;
-				case Comando.ATACAR:
-					paqueteAtacar = gson.fromJson(objetoLeido, PaqueteAtacar.class);
-					juego.getEstadoBatalla().getEnemigo().actualizarAtributos(paqueteAtacar.getMapPersonaje());
-					juego.getEstadoBatalla().getPersonaje().actualizarAtributos(paqueteAtacar.getMapEnemigo());
-					juego.getEstadoBatalla().setMiTurno(true);
-					break;
-				case Comando.FINALIZARBATALLA:
-					paqueteFinalizarBatalla = gson.fromJson(objetoLeido, PaqueteFinalizarBatalla.class);
-					juego.getPersonaje().setEstado(Estado.ESTADOJUEGO);
-					Estado.setEstado(juego.getEstadoJuego());
-					break;
-				case Comando.ACTUALIZARPERSONAJE:
-					paquetePersonaje = gson.fromJson(objetoLeido, PaquetePersonaje.class);
-					personajesConectados.remove(paquetePersonaje.getId());
-					personajesConectados.put(paquetePersonaje.getId(), paquetePersonaje);
-					if (juego.getPersonaje().getId() == paquetePersonaje.getId()) {
-						juego.actualizarPersonaje();
-						juego.getEstadoJuego().actualizarPersonaje();
-						cliente.actualizarItems(paquetePersonaje);
-					}
-				}
+				ClienteComandos comandos = (ClienteComandos) paquete.getComandoPaquete(ClienteComandos.PACKAGE);
+				comandos.setJuego(this.juego);
+				comandos.ejecutar();
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
