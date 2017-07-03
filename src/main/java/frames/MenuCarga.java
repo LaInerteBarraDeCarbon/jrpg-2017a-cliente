@@ -16,21 +16,24 @@ import mensajeria.Comando;
 import utilitarias.Constantes;
 
 /**
- *
+ * Clase que muestra el menú de carga del juego. <br>
  */
 @SuppressWarnings("serial")
 public class MenuCarga extends JFrame {
 	/**
-	 * 
+	 * Panel contenedor. <br>
 	 */
 	private JPanel contentPane;
+	/**
+	 * Barra de carga del juego. <br>
+	 */
 	private JLabel barraCargando;
 
 	/**
 	 * Carga la vista . <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos. <br>
+	 *            Cliente. <br>
 	 */
 	public MenuCarga(final Cliente cliente) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

@@ -51,10 +51,10 @@ public class EscuchaMensajes extends Thread {
 	private Map<Integer, PaquetePersonaje> personajesConectados;
 
 	/**
-	 * Constructor de EsuchaMensaje
+	 * Constructor de EsuchaMensaje. <br>
 	 * 
 	 * @param juego
-	 *            juego del que se escucha el mensaje
+	 *            juego del que se escucha el mensaje. <br>
 	 */
 	public EscuchaMensajes(final Juego juego) {
 		this.juego = juego;

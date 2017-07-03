@@ -67,7 +67,7 @@ public abstract class Comando {
 	public static final int ACTUALIZARINVENTARIO = 12;
 
 	/**
-	 * 
+	 * Ejecuta el comando. <br>
 	 */
 	public abstract void ejecutar();
 

@@ -140,7 +140,7 @@ public class Cliente extends Thread {
 					String cadenaLeida = (String) entrada.readObject();
 					Paquete paquete = gson.fromJson(cadenaLeida, Paquete.class);
 
-					ClienteComandos comandos = (ClienteComandos) paquete.;
+					ClienteComandos comandos = (ClienteComandos) paquete.getComandoPaquete(ClienteComandos.PACKAGE);
 
 					switch (paquete.getComando()) {
 					case Comando.REGISTRO:

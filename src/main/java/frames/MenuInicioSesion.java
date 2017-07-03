@@ -44,7 +44,7 @@ public class MenuInicioSesion extends JFrame {
 	 * Carga el menú para que el cliente entre al juego. <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos. <br>
+	 *            Cliente. <br>
 	 */
 	public MenuInicioSesion(final Cliente cliente) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

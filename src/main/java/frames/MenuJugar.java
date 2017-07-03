@@ -34,7 +34,7 @@ public class MenuJugar extends JFrame {
 	 * Crea el menú para jugar. <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos. <br>
+	 *            Cliente. <br>
 	 */
 	public MenuJugar(final Cliente cliente) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

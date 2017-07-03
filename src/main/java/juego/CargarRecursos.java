@@ -22,7 +22,7 @@ public class CargarRecursos extends Thread {
 	 * Carga los recursos del cliente. <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos. <br>
+	 *            Cliente. <br>
 	 */
 	public CargarRecursos(Cliente cliente) {
 		this.cliente = cliente;

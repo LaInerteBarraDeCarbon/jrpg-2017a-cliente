@@ -5,10 +5,13 @@ import juego.Juego;
 import mensajeria.Comando;
 
 /**
- *
+ * Clase que administra los comandos de cliente. <br>
  */
 public abstract class ClienteComandos extends Comando {
-	public static final String ALGO = "HH";
+	/**
+	 * Paquete de comandos del cliente. <br>
+	 */
+	public static final String PACKAGE = "comandos";
 
 	/**
 	 * Juego del usuario. <br>

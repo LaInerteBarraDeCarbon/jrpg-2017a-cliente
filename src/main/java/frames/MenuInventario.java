@@ -29,7 +29,7 @@ public class MenuInventario extends JFrame {
 	 * Muestra el menú de inventario del jugador. <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos que lo invoca. <br>
+	 *            Cliente que lo invoca. <br>
 	 */
 	public MenuInventario(final Cliente cliente) {
 		cancelar.addActionListener(new ActionListener() {

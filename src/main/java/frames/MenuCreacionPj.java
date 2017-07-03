@@ -69,10 +69,9 @@ public class MenuCreacionPj extends JFrame {
 	 * Menú para la creación de un personaje. <br>
 	 * 
 	 * @param cliente
-	 *            ClienteComandos que lo crea. <br>
+	 *            Cliente que lo crea. <br>
 	 * @param personaje
 	 *            Personaje del cliente. <br>
-	 *            S
 	 */
 	public MenuCreacionPj(final Cliente cliente, final PaquetePersonaje personaje) {
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(

@@ -45,11 +45,10 @@ public class Juego implements Runnable {
 	 */
 	private boolean corriendo;
 	/**
-	 * ??? <br>
+	 * Estrategia para graficar mediante buffers (Primero se "grafica" en el/los
+	 * buffer/s y finalmente en el canvas).<br>
 	 */
-	private BufferStrategy bs; // Estrategia para graficar mediante buffers
-								// (Primero se "grafica" en el/los buffer/s y
-								// finalmente en el canvas)
+	private BufferStrategy bs;
 	/**
 	 * Graficador. <br>
 	 */
@@ -71,7 +70,7 @@ public class Juego implements Runnable {
 	 */
 	private Camara camara;
 	/**
-	 * ClienteComandos del usuario. <br>
+	 * Cliente del usuario. <br>
 	 */
 	private Cliente cliente;
 	/**
@@ -303,7 +302,7 @@ public class Juego implements Runnable {
 	/**
 	 * Devuelve el cliente del usuario. <br>
 	 * 
-	 * @return ClienteComandos. <br>
+	 * @return Cliente. <br>
 	 */
 	public Cliente getCliente() {
 		return cliente;
