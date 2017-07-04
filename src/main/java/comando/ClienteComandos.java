@@ -21,6 +21,10 @@ public abstract class ClienteComandos extends Comando {
 	 * Cliente del usuario. <br>
 	 */
 	protected Cliente cliente;
+	/**
+	 * Cadena. <br>
+	 */
+	protected String string;
 
 	/**
 	 * Establece el juego. <br>

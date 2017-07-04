@@ -5,16 +5,16 @@ import com.google.gson.Gson;
 import mensajeria.PaquetePersonaje;
 
 /**
- * Clase que actualiza los personajes. <br>
+ * Clase que administra la actualización del inventario. <br>
  */
-public class ActualizarPersonaje extends MensajesComandos {
+public class ActualizarInventario extends ClienteComandos {
 	/**
 	 * Gson. <br>
 	 */
 	private final Gson gson = new Gson();
 
 	/**
-	 * Ejecuta la actualización de personajes. <br>
+	 * Ejecuta la actualización del inventario. <br>
 	 */
 	@Override
 	public void ejecutar() {
@@ -27,6 +27,7 @@ public class ActualizarPersonaje extends MensajesComandos {
 			super.juego.getCliente().actualizarItems(paquetePersonaje);
 			super.juego.getCliente()
 					.actualizarPersonaje(super.juego.getPersonajesConectados().get(paquetePersonaje.getId()));
+
 		}
 	}
 }

@@ -3,6 +3,7 @@ package juego;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -89,6 +90,14 @@ public class Juego implements Runnable {
 	 * Recursos del juego. <br>
 	 */
 	private CargarRecursos cargarRecursos;
+	/**
+	 * Personajes conectados en el juego. <br>
+	 */
+	private Map<Integer, PaquetePersonaje> personajesConectados;
+	/**
+	 * Ubicación de los personajes en el juego. <br>
+	 */
+	private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
 
 	/**
 	 * Crea un juego para el usuario. <br>
@@ -351,5 +360,33 @@ public class Juego implements Runnable {
 	public void actualizarPersonaje() {
 		paquetePersonaje = (PaquetePersonaje) (escuchaMensajes.getPersonajesConectados().get(paquetePersonaje.getId())
 				.clone());
+	}
+
+	/**
+	 * Devuelve los personajes conectados al juego. <br>
+	 * 
+	 * @return Personajes conectados. <br>
+	 */
+	public Map<Integer, PaquetePersonaje> getPersonajesConectados() {
+		return personajesConectados;
+	}
+
+	/**
+	 * Devuelve la ubicación de los personajes. <br>
+	 * 
+	 * @return Ubicación de los personajes. <br>
+	 */
+	public Map<Integer, PaqueteMovimiento> getUbicacionPersonajes() {
+		return ubicacionPersonajes;
+	}
+
+	/**
+	 * Establece la ubicación de los personajes. <br>
+	 * 
+	 * @param ubicacionPersonajes
+	 *            Ubicación de los personajes. <br>
+	 */
+	public void setUbicacionPersonajes(Map<Integer, PaqueteMovimiento> ubicacionPersonajes) {
+		this.ubicacionPersonajes = ubicacionPersonajes;
 	}
 }

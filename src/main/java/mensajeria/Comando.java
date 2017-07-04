@@ -8,6 +8,8 @@ public abstract class Comando {
 	 * Paquete del comando. <br>
 	 */
 	protected Paquete paquete;
+
+	protected String string;
 	/**
 	 * Nombre de las clases que utilizan los comandos. <br>
 	 */
@@ -46,13 +48,13 @@ public abstract class Comando {
 	 */
 	public static final int SALIR = 7;
 	/**
-	 * Atacar a otro personaje. <br>
-	 */
-	public static final int ATACAR = 9;
-	/**
 	 * Entrar en una batalla. <br>
 	 */
 	public static final int BATALLA = 8;
+	/**
+	 * Atacar a otro personaje. <br>
+	 */
+	public static final int ATACAR = 9;
 	/**
 	 * Finalizar la batalla. <br>
 	 */
@@ -79,5 +81,15 @@ public abstract class Comando {
 	 */
 	public void setPaquete(final Paquete paquete) {
 		this.paquete = paquete;
+	}
+
+	/**
+	 * Establece una cadena. <br>
+	 * 
+	 * @param string
+	 *            Cadena. <br>
+	 */
+	public void setString(final String string) {
+		this.string = string;
 	}
 }
