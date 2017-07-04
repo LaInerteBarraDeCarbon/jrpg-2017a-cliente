@@ -67,6 +67,10 @@ public abstract class Comando {
 	 * Actualizar el inventario. <br>
 	 */
 	public static final int ACTUALIZARINVENTARIO = 12;
+	/**
+	 * Establece el comercio entre los personajes. <br>
+	 */
+	public static final int COMERCIO = 13;
 
 	/**
 	 * Ejecuta el comando. <br>
